@@ -1,8 +1,8 @@
 # Loads webpacker configuration from config/webpack/paths.yml
-require "webpacker/file_loader"
-require "webpacker/env"
+require "webpacker/lite/file_loader"
+require "webpacker/lite/env"
 
-class Webpacker::Configuration < Webpacker::FileLoader
+class Webpacker::Lite::Configuration < Webpacker::Lite::FileLoader
   class << self
     def config_path
       Rails.root.join(paths.fetch(:config, "config/webpack"))
@@ -25,8 +25,8 @@ class Webpacker::Configuration < Webpacker::FileLoader
     end
 
     def paths
-      load if Webpacker::Env.development?
-      raise Webpacker::FileLoader::FileLoaderError.new("Webpacker::Configuration.load must be called first") unless instance
+      load if Webpacker::Lite::Env.development?
+      raise Webpacker::Lite::FileLoader::FileLoaderError.new("Webpacker::Lite::Configuration.load must be called first") unless instance
       instance.data
     end
 
@@ -38,6 +38,6 @@ class Webpacker::Configuration < Webpacker::FileLoader
   private
     def load
       return super unless File.exist?(@path)
-      HashWithIndifferentAccess.new(YAML.load(File.read(@path))[Webpacker::Env.current])
+      HashWithIndifferentAccess.new(YAML.load(File.read(@path))[Webpacker::Lite::Env.current])
     end
 end

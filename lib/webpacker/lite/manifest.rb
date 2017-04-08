@@ -5,20 +5,20 @@
 # files, # "/packs/calendar-1016838bab065ae1e314.js" and
 # "/packs/calendar-1016838bab065ae1e314.css" for long-term caching
 
-require "webpacker/file_loader"
-require "webpacker/env"
-require "webpacker/configuration"
+require "webpacker/lite/file_loader"
+require "webpacker/lite/env"
+require "webpacker/lite/configuration"
 
-class Webpacker::Manifest < Webpacker::FileLoader
+class Webpacker::Lite::Manifest < Webpacker::Lite::FileLoader
   class << self
     def file_path
-      Webpacker::Configuration.manifest_path
+      Webpacker::Lite::Configuration.manifest_path
     end
 
     def lookup(name)
-      load if Webpacker::Env.development?
-      raise Webpacker::FileLoader::FileLoaderError.new("Webpacker::Manifest.load must be called first") unless instance
-      instance.data[name.to_s] || raise(Webpacker::FileLoader::NotFoundError.new("Can't find #{name} in #{file_path}. Is webpack still compiling?"))
+      load if Webpacker::Lite::Env.development?
+      raise Webpacker::Lite::FileLoader::FileLoaderError.new("Webpacker::Lite::Manifest.load must be called first") unless instance
+      instance.data[name.to_s] || raise(Webpacker::Lite::FileLoader::NotFoundError.new("Can't find #{name} in #{file_path}. Is webpack still compiling?"))
     end
   end
 
