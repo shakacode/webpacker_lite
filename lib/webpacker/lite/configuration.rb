@@ -8,10 +8,6 @@ class Webpacker::Lite::Configuration < Webpacker::Lite::FileLoader
       Rails.root.join(paths.fetch(:config, "config/webpack"))
     end
 
-    def entry_path
-      Rails.root.join(source_path, paths.fetch(:entry, "packs"))
-    end
-
     def file_path
       Rails.root.join("config", "webpack", "paths.yml")
     end
@@ -21,7 +17,7 @@ class Webpacker::Lite::Configuration < Webpacker::Lite::FileLoader
     end
 
     def output_path
-      Rails.root.join(paths.fetch(:output, "public"), paths.fetch(:entry, "packs"))
+      Rails.root.join(paths.fetch(:output, "public"), paths.fetch(:assets, "assets/webpack"))
     end
 
     def paths
