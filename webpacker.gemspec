@@ -2,7 +2,7 @@ $:.push File.expand_path("../lib", __FILE__)
 require "webpacker/version"
 
 Gem::Specification.new do |s|
-  s.name     = "webpacker"
+  s.name     = "webpacker-lite"
   s.version  = Webpacker::VERSION
   s.authors  = "David Heinemeier Hansson, Justin Gordon"
   s.email    = "justin@shakacode.com"
