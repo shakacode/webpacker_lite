@@ -1,4 +1,4 @@
-namespace :webpacker do
+namespace :webpacker_lite do
   desc "Verifies if Node.js is installed"
   task :check_node do
     begin
@@ -7,7 +7,7 @@ namespace :webpacker do
 
       raise Errno::ENOENT if node_version.blank?
       if Gem::Version.new(node_version.strip.tr("v", "")) < Gem::Version.new(required_node_version)
-        puts "Webpacker requires Node.js >= v#{required_node_version} and you are using #{node_version}"
+        puts "WebpackerLite requires Node.js >= v#{required_node_version} and you are using #{node_version}"
         puts "Please upgrade Node.js https://nodejs.org/en/download/"
         puts "Exiting!" && exit!
       end
