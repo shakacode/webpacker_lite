@@ -9,16 +9,16 @@ require "webpacker/lite/file_loader"
 require "webpacker/lite/env"
 require "webpacker/lite/configuration"
 
-class Webpacker::Lite::Manifest < Webpacker::Lite::FileLoader
+class WebpackerLite::Manifest < WebpackerLite::FileLoader
   class << self
     def file_path
-      Webpacker::Lite::Configuration.manifest_path
+      WebpackerLite::Configuration.manifest_path
     end
 
     def lookup(name)
-      load if Webpacker::Lite::Env.development?
-      raise Webpacker::Lite::FileLoader::FileLoaderError.new("Webpacker::Lite::Manifest.load must be called first") unless instance
-      instance.data[name.to_s] || raise(Webpacker::Lite::FileLoader::NotFoundError.new("Can't find #{name} in #{file_path}. Is webpack still compiling?"))
+      load if WebpackerLite::Env.development?
+      raise WebpackerLite::FileLoader::FileLoaderError.new("WebpackerLite::Manifest.load must be called first") unless instance
+      instance.data[name.to_s] || raise(WebpackerLite::FileLoader::NotFoundError.new("Can't find #{name} in #{file_path}. Is webpack still compiling?"))
     end
   end
 
