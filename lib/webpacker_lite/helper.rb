@@ -1,6 +1,6 @@
-require "webpacker/lite/manifest"
+require "webpacker_lite/manifest"
 
-module Webpacker::Lite::Helper
+module WebpackerLite::Helper
   # Computes the full path for a given webpacker asset.
   # Return relative path using manifest.json and passes it to asset_url helper
   # This will use asset_path internally, so most of their behaviors will be the same.
@@ -11,7 +11,7 @@ module Webpacker::Lite::Helper
   # In production mode:
   #   <%= asset_pack_path 'calendar.css' %> # => "/packs/calendar-1016838bab065ae1e122.css"
   def asset_pack_path(name, **options)
-    asset_path(Webpacker::Lite::Manifest.lookup(name), **options)
+    asset_path(WebpackerLite::Manifest.lookup(name), **options)
   end
   # Creates a script tag that references the named pack file, as compiled by Webpack per the entries list
   # in config/webpack/shared.js. By default, this list is auto-generated to match everything in
@@ -27,7 +27,7 @@ module Webpacker::Lite::Helper
   #   <%= javascript_pack_tag 'calendar', 'data-turbolinks-track': 'reload' %> # =>
   #   <script src="/packs/calendar-1016838bab065ae1e314.js" data-turbolinks-track="reload"></script>
   def javascript_pack_tag(name, **options)
-    javascript_include_tag(Webpacker::Lite::Manifest.lookup("#{name}#{compute_asset_extname(name, type: :javascript)}"), **options)
+    javascript_include_tag(WebpackerLite::Manifest.lookup("#{name}#{compute_asset_extname(name, type: :javascript)}"), **options)
   end
 
   # Creates a link tag that references the named pack file, as compiled by Webpack per the entries list
@@ -44,6 +44,6 @@ module Webpacker::Lite::Helper
   #   <%= stylesheet_pack_tag 'calendar', 'data-turbolinks-track': 'reload' %> # =>
   #   <link rel="stylesheet" media="screen" href="/packs/calendar-1016838bab065ae1e122.css" data-turbolinks-track="reload" />
   def stylesheet_pack_tag(name, **options)
-    stylesheet_link_tag(Webpacker::Lite::Manifest.lookup("#{name}#{compute_asset_extname(name, type: :stylesheet)}"), **options)
+    stylesheet_link_tag(WebpackerLite::Manifest.lookup("#{name}#{compute_asset_extname(name, type: :stylesheet)}"), **options)
   end
 end

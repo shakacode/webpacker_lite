@@ -1,5 +1,5 @@
 # Provides a base singleton-configuration pattern for loading a file, given a path
-class Webpacker::Lite::FileLoader
+class WebpackerLite::FileLoader
   class NotFoundError < StandardError; end
   class FileLoaderError < StandardError; end
 

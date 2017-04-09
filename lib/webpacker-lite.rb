@@ -1,11 +1,11 @@
 module Webpacker
   module Lite
     def self.bootstrap
-      Webpacker::Lite::Env.load
-      Webpacker::Lite::Configuration.load
-      Webpacker::Lite::Manifest.load
+      WebpackerLite::Env.load
+      WebpackerLite::Configuration.load
+      WebpackerLite::Manifest.load
     end
   end
 end
 
-require "webpacker/lite/railtie" if defined?(Rails)
+require "webpacker_lite/railtie" if defined?(Rails)
