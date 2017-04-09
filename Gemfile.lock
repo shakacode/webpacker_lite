@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    webpacker-lite (0.0.1)
+    webpacker_lite (0.0.2)
       activesupport (>= 4.2)
       multi_json (~> 1.2)
       railties (>= 4.2)
@@ -64,7 +64,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.12)
-  webpacker-lite!
+  webpacker_lite!
 
 BUNDLED WITH
-   1.14.3
+   1.14.6

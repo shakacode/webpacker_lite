@@ -1,7 +1,7 @@
 # Webpacker Lite
-![travis-ci status](https://api.travis-ci.org/rails/webpacker-lite.svg?branch=master)
+![travis-ci status](https://api.travis-ci.org/rails/webpacker_lite.svg?branch=master)
 [![node.js](https://img.shields.io/badge/node-%3E%3D%206.4.0-brightgreen.svg)](https://nodejs.org/en/)
-[![Gem](https://img.shields.io/gem/v/webpacker-lite.svg)](https://github.com/rails/webpacker)
+[![Gem](https://img.shields.io/gem/v/webpacker_lite.svg)](https://github.com/shakacode/webpacker_lite)
 
 Webpacker Lite provides the webpack enabled asset helpers from [Webpacker](https://github.com/rails/webpacker).
 [React on Rails](https://github.com/shakacode/react_on_rails) will soon support using Webpacker Lite.
