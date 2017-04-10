@@ -6,6 +6,9 @@
 Webpacker Lite provides the webpack enabled asset helpers from [Webpacker](https://github.com/rails/webpacker).
 [React on Rails](https://github.com/shakacode/react_on_rails) will soon support using Webpacker Lite.
 
+# NEWS
+* 2017-04-09: React on Rails 7.0.0 beta work to include webpacker_lite gem has begun. See [#786](https://github.com/shakacode/react_on_rails/issues/786
+
 ## Prerequisites
 
 * Ruby 2.2+
