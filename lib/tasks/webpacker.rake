@@ -1,17 +1,13 @@
 tasks = {
-  "webpacker:install"         => "Installs and setup webpack with yarn",
-  "webpacker:compile"         => "Compiles webpack bundles based on environment",
-  "webpacker:check_node"      => "Verifies if Node.js is installed",
-  "webpacker:check_yarn"      => "Verifies if yarn is installed",
-  "webpacker:verify_install"  => "Verifies if webpacker is installed",
-  "webpacker:yarn_install"    => "Support for older Rails versions. Install all JavaScript dependencies as specified via Yarn",
-  "webpacker:install:react"   => "Installs and setup example react component",
-  "webpacker:install:vue"     => "Installs and setup example vue component",
-  "webpacker:install:angular" => "Installs and setup example angular2 component"
+  "webpacker_lite:install"         => "Installs and setup webpack with yarn",
+  "webpacker_lite:compile"         => "Compiles webpack bundles based on environment",
+  "webpacker_lite:check_node"      => "Verifies if Node.js is installed",
+  "webpacker_lite:check_yarn"      => "Verifies if yarn is installed",
+  "webpacker_lite:verify_install"  => "Verifies if webpacker is installed",
 }.freeze
 
-desc "Lists all available tasks in webpacker"
-task :webpacker do
-  puts "Available webpacker tasks are:"
+desc "Lists all available tasks in webpacker_lite"
+task :webpacker_lite do
+  puts "Available webpacker_lite tasks are:"
   tasks.each { |task, message| puts task.ljust(30) + message }
 end

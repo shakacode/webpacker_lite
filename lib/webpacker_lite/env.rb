@@ -1,10 +1,10 @@
 # Singleton registry for determining NODE_ENV from config/webpack/paths.yml
-require "webpacker/file_loader"
+require "webpacker_lite/file_loader"
 
-class Webpacker::Env < Webpacker::FileLoader
+class WebpackerLite::Env < WebpackerLite::FileLoader
   class << self
     def current
-      raise Webpacker::FileLoader::FileLoaderError.new("Webpacker::Env.load must be called first") unless instance
+      raise WebpackerLite::FileLoader::FileLoaderError.new("WebpackerLite::Env.load must be called first") unless instance
       instance.data
     end
 
