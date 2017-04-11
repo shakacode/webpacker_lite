@@ -1,5 +1,4 @@
 # Webpacker Lite
-![travis-ci status](https://api.travis-ci.org/rails/webpacker_lite.svg?branch=master)
 [![Gem](https://img.shields.io/gem/v/webpacker_lite.svg)](https://github.com/shakacode/webpacker_lite)
 
 Webpacker Lite provides the webpack enabled asset helpers from [Webpacker](https://github.com/rails/webpacker).
@@ -10,10 +9,8 @@ Webpacker Lite provides the webpack enabled asset helpers from [Webpacker](https
 
 ## Prerequisites
 
-* Ruby 2.2+
+* Ruby 2+
 * Rails 4.2+
-* Node.js 6.4.0+
-* Yarn
 
 ## Installation
 
