@@ -1,4 +1,5 @@
 require "webpacker_lite/manifest"
+require "webpacker_lite/dev_server"
 
 module WebpackerLite::Helper
   # Computes the full path for a given webpacker asset.
@@ -44,6 +45,8 @@ module WebpackerLite::Helper
   #   <%= stylesheet_pack_tag 'calendar', 'data-turbolinks-track': 'reload' %> # =>
   #   <link rel="stylesheet" media="screen" href="/packs/calendar-1016838bab065ae1e122.css" data-turbolinks-track="reload" />
   def stylesheet_pack_tag(name, **options)
-    stylesheet_link_tag(WebpackerLite::Manifest.lookup("#{name}#{compute_asset_extname(name, type: :stylesheet)}"), **options)
+    unless WebpackerLite::DevServer.hot_loading?
+      stylesheet_link_tag(WebpackerLite::Manifest.lookup("#{name}#{compute_asset_extname(name, type: :stylesheet)}"), **options)
+    end
   end
 end
