@@ -1,5 +1,5 @@
 require "webpacker_lite/manifest"
-require "webpacker_lite/dev_server"
+require "webpacker_lite/env"
 
 module WebpackerLite::Helper
   # Computes the full path for a given webpacker asset.
@@ -31,22 +31,45 @@ module WebpackerLite::Helper
     javascript_include_tag(WebpackerLite::Manifest.lookup("#{name}#{compute_asset_extname(name, type: :javascript)}"), **options)
   end
 
-  # Creates a link tag that references the named pack file, as compiled by Webpack per the entries list
-  # in config/webpack/shared.js. By default, this list is auto-generated to match everything in
-  # app/javascript/packs/*.js. In production mode, the digested reference is automatically looked up.
+  # Creates a link tag that references the named pack file(s), as compiled by Webpack per the entries list
+  # in client/webpack.client.base.config.js.
   #
   # Examples:
   #
   #   # In development mode:
   #   <%= stylesheet_pack_tag 'calendar', 'data-turbolinks-track': 'reload' %> # =>
-  #   <link rel="stylesheet" media="screen" href="/packs/calendar.css" data-turbolinks-track="reload" />
+  #   <link rel="stylesheet" media="screen" href="/public/webpack/development/calendar.css" data-turbolinks-track="reload" />
+  #
+  #   The key options are `static` and `hot` which specify what you want for static vs. hot. Both of
+  #   these params are optional, and support either a single value, or an array.
+  #
+  #   static vs. hot is picked based on whether
+  #   ENV["REACT_ON_RAILS_ENV"] == "HOT"
+  #   <%= stylesheet_pack_tag(static: 'application_static',
+  #                               hot: 'application_non_webpack',
+  #                               media: 'all',
+  #                               'data-turbolinks-track' => "reload")  %>
+  #
+  #   <!-- These do not use turbolinks, so no data-turbolinks-track -->
+  #   <!-- This is to load the hot assets. -->
+  #   <%= stylesheet_pack_tag(hot: ['app', 'vendor']) %>
+  #
+  #   <!-- These do use turbolinks -->
+  #   <%= stylesheet_pack_tag(static: 'application_static',
+  #                                  hot: 'application_non_webpack',
+  #                                  'data-turbolinks-track': 'reload') %>
   #
   #   # In production mode:
   #   <%= stylesheet_pack_tag 'calendar', 'data-turbolinks-track': 'reload' %> # =>
-  #   <link rel="stylesheet" media="screen" href="/packs/calendar-1016838bab065ae1e122.css" data-turbolinks-track="reload" />
-  def stylesheet_pack_tag(name, **options)
-    unless WebpackerLite::DevServer.hot_loading?
-      stylesheet_link_tag(WebpackerLite::Manifest.lookup("#{name}#{compute_asset_extname(name, type: :stylesheet)}"), **options)
+  #   <link rel="stylesheet" media="screen" href="/public/webpack/production/calendar-1016838bab065ae1e122.css" data-turbolinks-track="reload" />
+  def stylesheet_pack_tag(args)
+    asset_type = WebpackerLite::Env.hot_loading? ? :hot : :static
+    names = Array(args[asset_type])
+    manifested_names = names.map do |name|
+      WebpackerLite::Manifest.lookup("#{name}#{compute_asset_extname(name, type: :stylesheet)}")
     end
+
+    options = args.delete_if { |key, _value| %i(hot static).include?(key) }
+    stylesheet_link_tag(*manifested_names, options)
   end
 end
