@@ -35,7 +35,7 @@ module WebpackerLite::Helper
   # in client/webpack.client.base.config.js.
   #
   # Examples:
-  # 
+  #
   #   # In production mode:
   #   <%= stylesheet_pack_tag 'calendar', 'data-turbolinks-track': 'reload' %> # =>
   #   <link rel="stylesheet" media="screen" href="/public/webpack/production/calendar-1016838bab065ae1e122.css" data-turbolinks-track="reload" />
@@ -65,15 +65,16 @@ module WebpackerLite::Helper
   #
 
   def stylesheet_pack_tag(*args, **kwargs)
+    manifested_names = []
     default_case = args.any?
     if default_case
       args.flatten!
-      manifested_names = get_manifests(args)
-    else
-      asset_type = WebpackerLite::Env.hot_loading? ? :hot : :static
-      names = Array(kwargs[asset_type])
-      manifested_names = get_manifests(names)
+      manifested_names += get_manifests(args)
     end
+    asset_type = WebpackerLite::Env.hot_loading? ? :hot : :static
+    names = Array(kwargs[asset_type])
+    manifested_names += get_manifests(names)
+
     options = kwargs.delete_if { |key, _value| %i(hot static).include?(key) }
     stylesheet_link_tag(*manifested_names, options)
   end
