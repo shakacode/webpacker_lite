@@ -1,0 +1,27 @@
+{
+  "name": "react-webpack-rails-tutorial",
+  "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "node": "6.9.0",
+    "npm": "4.1.1"
+  },
+  "scripts": {
+    "postinstall": "cd client && yarn install",
+    "test": "rspec && yarn run test:client && yarn run lint",
+    "test:client": "(cd client && yarn run test --silent)",
+    "lint": "(cd client && yarn run lint --silent)",
+    "build:clean": "rm -rf public/webpack",
+    "build:production": "(cd client && yarn run build:production --silent)",
+    "build:production:client": "(cd client && yarn run build:production:client --silent)",
+    "build:production:server": "(cd client && yarn run build:production:server --silent)",
+    "build:client": "(cd client && yarn run build:client --silent)",
+    "build:server": "(cd client && yarn run build:server --silent)",
+    "build:dev:client": "(cd client && yarn run build:dev:client --silent)",
+    "build:dev:server": "(cd client && yarn run build:dev:server --silent)",
+    "build:test": "(cd client && yarn run build:client && yarn run build:server --silent)",
+    "hot-assets": "(cd client && yarn run hot-assets)"
+  },
+  "dependencies": {
+  }
+}

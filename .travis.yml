@@ -10,6 +10,16 @@ cache:
     - node_modules
   yarn: true
 
+gemfile:
+  - spec/dummy/Gemfile
+
+env:
+  global:
+    - RAILS_ENV=test
+    - DRIVER=selenium_chrome
+    - CHROME_BIN=/usr/bin/google-chrome
+    - USE_COVERALLS=TRUE
+
 install:
   - gem install rubocop
   - nvm install node
@@ -17,5 +27,4 @@ install:
   - npm i -g yarn
   - yarn
 script:
-  - yarn lint
-  - rubocop
+  - rake

@@ -81,9 +81,9 @@ module WebpackerLite::Helper
 
   private
 
-  def get_manifests(names)
-    names.map do |name|
-      WebpackerLite::Manifest.lookup("#{name}#{compute_asset_extname(name, type: :stylesheet)}")
+    def get_manifests(names)
+      names.map do |name|
+        WebpackerLite::Manifest.lookup("#{name}#{compute_asset_extname(name, type: :stylesheet)}")
+      end
     end
-  end
 end
