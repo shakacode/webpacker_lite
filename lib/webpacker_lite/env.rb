@@ -12,6 +12,10 @@ class WebpackerLite::Env < WebpackerLite::FileLoader
       current == "development"
     end
 
+    def hot_loading?
+      ENV["REACT_ON_RAILS_ENV"] == "HOT"
+    end
+
     def file_path
       Rails.root.join("config", "webpack", "paths.yml")
     end
