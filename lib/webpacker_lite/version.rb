@@ -1,3 +1,3 @@
 module WebpackerLite
-  VERSION = "0.0.5".freeze
+  VERSION = "1.0.0".freeze
 end
