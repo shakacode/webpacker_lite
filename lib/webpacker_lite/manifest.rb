@@ -16,7 +16,7 @@ class WebpackerLite::Manifest < WebpackerLite::FileLoader
     end
 
     def lookup(name)
-      load if WebpackerLite::Env.development?
+      load if WebpackerLite::Env.development? || instance.data.empty?
       raise WebpackerLite::FileLoader::FileLoaderError.new("WebpackerLite::Manifest.load must be called first") unless instance
       instance.data[name.to_s] || raise(WebpackerLite::FileLoader::NotFoundError.new("Can't find #{name} in #{file_path}. Is webpack still compiling?"))
     end

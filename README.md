@@ -2,7 +2,8 @@
 [![Gem](https://img.shields.io/gem/v/webpacker_lite.svg)](https://github.com/shakacode/webpacker_lite)
 
 Webpacker Lite provides the webpack enabled asset helpers from [Webpacker](https://github.com/rails/webpacker).
-[React on Rails](https://github.com/shakacode/react_on_rails) will soon support using Webpacker Lite.
+[React on Rails](https://github.com/shakacode/react_on_rails) will soon support using Webpacker Lite,
+including other optimizations for [React on Rails](https://github.com/shakacode/react_on_rails)
 
 # NEWS
 * 2017-04-09: React on Rails 7.0.0 beta work to include webpacker_lite gem has begun. See [#786](https://github.com/shakacode/react_on_rails/issues/786
@@ -17,6 +18,8 @@ Webpacker Lite provides the webpack enabled asset helpers from [Webpacker](https
 WebpackerLite is currently compatible with Rails 4.2+, but there's no guarantee it will still be
 in the future.
 
+The best way to see the installation of webpacker_lite is to use the generator for React on Rails 7.1.0 or greater.
+
 ## Overview
 
 1. Configure the location of your Webpack output in the `config/webpack/paths.yml` file.
@@ -30,6 +33,23 @@ in the future.
    <%= javascript_pack_tag 'main' %>
    <%= stylesheet_pack_tag 'main' %>
    ```
+
+## Rake Tasks
+
+### Examples
+
+To see available webpacker_lite rake tasks:
+
+```
+rake webpacker_lite
+```
+
+If you are using different directories for the output paths per RAILS_ENV, this is how you'd delete the files created for tests: 
+```
+RAILS_ENV=test rake webpacker_lite:clobber
+```
+
+
 
 ## Hot Reloading Config   
 Similary, you can also control and configure `webpack-dev-server` settings from
