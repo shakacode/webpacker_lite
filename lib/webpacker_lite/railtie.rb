@@ -8,6 +8,10 @@ class WebpackerLite::Engine < ::Rails::Engine
       ActionController::Base.helper WebpackerLite::Helper
     end
 
+    ActiveSupport.on_load :action_view do
+      include WebpackerLite::Helper
+    end
+
     WebpackerLite.bootstrap
     Spring.after_fork {  WebpackerLite.bootstrap } if defined?(Spring)
   end
