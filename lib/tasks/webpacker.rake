@@ -1,5 +1,5 @@
 tasks = {
-  "webpacker_lite:clobber"  => "Remove the webpack compiled output directory as defined in config/webpack/paths.yml",
+  "webpacker_lite:clobber" => "Remove the webpack compiled output directory as defined in config/webpack/paths.yml",
   "webpacker_lite:check_node"      => "Verifies if Node.js is installed",
   "webpacker_lite:check_yarn"      => "Verifies if yarn is installed",
   "webpacker_lite:verify_install"  => "Verifies if webpacker is installed"
