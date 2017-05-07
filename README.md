@@ -87,9 +87,11 @@ for an asset used in your pack code you can reference them like this in your vie
   <!-- In development mode with webpack-dev-server -->
   <script src="http://localhost:8080/main.js"></script>
   <link rel="stylesheet" media="screen" href="http://localhost:8080/main.css">
+  
   <!-- In development mode -->
   <script src="/packs/main.js"></script>
   <link rel="stylesheet" media="screen" href="/packs/main.css">
+  
   <!-- In production mode -->
   <script src="/packs/main-0bd141f6d9360cf4a7f5.js"></script>
   <link rel="stylesheet" media="screen" href="/packs/main-dc02976b5f94b507e3b6.css">
