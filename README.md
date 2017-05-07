@@ -2,11 +2,11 @@
 ![Gem Version](https://badge.fury.io/rb/webpacker_lite.svg)
 
 Webpacker Lite provides the webpack enabled asset helpers from [Webpacker](https://github.com/rails/webpacker).
-[React on Rails](https://github.com/shakacode/react_on_rails) will soon support using Webpacker Lite,
-including other optimizations for [React on Rails](https://github.com/shakacode/react_on_rails)
+[React on Rails](https://github.com/shakacode/react_on_rails) version 8 and greater defaults to using Webpacker Lite. 
 
 # NEWS
-* 2017-04-09: React on Rails 7.0.0 beta work to include webpacker_lite gem has begun. See [#786](https://github.com/shakacode/react_on_rails/issues/786
+ 
+* 2017-05-03: React on Rails 8.0.0 beta defaults to using webpacker_lite.
 
 ## Prerequisites
 
@@ -15,10 +15,9 @@ including other optimizations for [React on Rails](https://github.com/shakacode/
 
 ## Installation
 
-WebpackerLite is currently compatible with Rails 4.2+, but there's no guarantee it will still be
-in the future.
+WebpackerLite is currently compatible with Rails 4.2+.
 
-The best way to see the installation of webpacker_lite is to use the generator for React on Rails 7.1.0 or greater.
+The best way to see the installation of webpacker_lite is to use the generator for React on Rails 8.0.0 or greater.
 
 ## Overview
 
@@ -30,9 +29,15 @@ The best way to see the installation of webpacker_lite is to use the generator f
 3. Use the asset helpers on your layouts to provide the webpack generated files:
    ```erb
    <%# app/views/layouts/application.html.erb %>
-   <%= javascript_pack_tag 'main' %>
-   <%= stylesheet_pack_tag 'main' %>
+   <%= javascript_pack_tag('main') %>
+   <%= stylesheet_pack_tag('main') %>
    ```
+4. If you only want the `stylesheet_pack_tag` to be used for non-hot-reloading, pass the value of the file name in a named parameter called "static", like this:
+   ```erb
+   <%= stylesheet_pack_tag(static: 'main') %>
+   ```
+
+Note, you can specify singlar file names or arrays for these asset helpers, even when using the `static` named parameter.
 
 ## Rake Tasks
 
@@ -49,10 +54,9 @@ If you are using different directories for the output paths per RAILS_ENV, this 
 RAILS_ENV=test rake webpacker_lite:clobber
 ```
 
-
-
 ## Hot Reloading Config   
-Similary, you can also control and configure `webpack-dev-server` settings from
+You can also control and configure `webpack-dev-server` settings from
+
 `config/webpack/development.server.yml` file
 
 ```yml
@@ -64,7 +68,7 @@ port: 8080
 
 ## Getting asset path
 
-Webpacker provides `asset_pack_path` helper to get the path of any given asset that's been compiled by webpack.
+The `asset_pack_path` helper provides the path of any given asset that's been compiled by webpack.
 
 For example, if you want to create a `<link rel="prefetch">` or `<img />`
 for an asset used in your pack code you can reference them like this in your view,
