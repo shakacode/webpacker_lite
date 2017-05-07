@@ -1,5 +1,5 @@
 # Webpacker Lite
-[![Gem](https://img.shields.io/gem/v/webpacker_lite.svg)](https://github.com/shakacode/webpacker_lite)
+[![Gem Version](https://badge.fury.io/rb/webpacker_lite.svg)]
 
 Webpacker Lite provides the webpack enabled asset helpers from [Webpacker](https://github.com/rails/webpacker).
 [React on Rails](https://github.com/shakacode/react_on_rails) will soon support using Webpacker Lite,
