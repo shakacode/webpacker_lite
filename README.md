@@ -41,6 +41,8 @@ The best way to see the installation of webpacker_lite is to use the generator f
 
 Note, you can specify singlar file names or arrays for these asset helpers, even when using the `static` named parameter.
 
+For more details on the helper documentation, see [lib/webpacker_lite/helper.rb](lib/webpacker_lite/helper.rb).
+
 ## Rake Tasks
 
 ### Examples
