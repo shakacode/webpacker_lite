@@ -2,7 +2,9 @@
 ![Gem Version](https://badge.fury.io/rb/webpacker_lite.svg)
 
 Webpacker Lite provides the webpack enabled asset helpers from [Webpacker](https://github.com/rails/webpacker).
-[React on Rails](https://github.com/shakacode/react_on_rails) version 8 and greater defaults to using Webpacker Lite. 
+[React on Rails](https://github.com/shakacode/react_on_rails) version 8 and greater defaults to using Webpacker Lite.
+
+If you like this project, show your support by giving us a star!
 
 # NEWS
  
