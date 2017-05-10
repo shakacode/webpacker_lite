@@ -14,6 +14,7 @@ module WebpackerLite::Helper
   def asset_pack_path(name, **options)
     asset_path(WebpackerLite::Manifest.lookup(name), **options)
   end
+  
   # Creates a script tag that references the named pack file, as compiled by Webpack per the entries list
   # in config/webpack/shared.js. By default, this list is auto-generated to match everything in
   # app/javascript/packs/*.js. In production mode, the digested reference is automatically looked up.
@@ -50,9 +51,9 @@ module WebpackerLite::Helper
   #   static vs. hot is picked based on whether
   #   ENV["REACT_ON_RAILS_ENV"] == "HOT"
   #   <%= stylesheet_pack_tag(static: 'application_static',
-  #                               hot: 'application_non_webpack',
-  #                               media: 'all',
-  #                               'data-turbolinks-track' => "reload")  %>
+  #                           hot: 'application_non_webpack',
+  #                           media: 'all',
+  #                           'data-turbolinks-track' => "reload")  %>
   #
   #   <!-- These do not use turbolinks, so no data-turbolinks-track -->
   #   <!-- This is to load the hot assets. -->
@@ -60,10 +61,9 @@ module WebpackerLite::Helper
   #
   #   <!-- These do use turbolinks -->
   #   <%= stylesheet_pack_tag(static: 'application_static',
-  #                                  hot: 'application_non_webpack',
-  #                                  'data-turbolinks-track': 'reload') %>
+  #                           hot: 'application_non_webpack',
+  #                           'data-turbolinks-track': 'reload') %>
   #
-
   def stylesheet_pack_tag(*args, **kwargs)
     manifested_names = []
     default_case = args.any?
