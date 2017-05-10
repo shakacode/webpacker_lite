@@ -21,7 +21,7 @@ module WebpackerLite::Helper
   #
   # Examples:
   #
-  #   # In development mode:
+  #   In development mode:
   #   <%= javascript_pack_tag 'calendar', 'data-turbolinks-track': 'reload' %> # =>
   #   <script src="/packs/calendar.js" data-turbolinks-track="reload"></script>
   #
@@ -63,7 +63,6 @@ module WebpackerLite::Helper
   #   <%= stylesheet_pack_tag(static: 'application_static',
   #                           hot: 'application_non_webpack',
   #                           'data-turbolinks-track': 'reload') %>
-  #
   def stylesheet_pack_tag(*args, **kwargs)
     manifested_names = []
     default_case = args.any?
