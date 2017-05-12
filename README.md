@@ -26,8 +26,8 @@ The best way to see the installation of webpacker_lite is to use the generator f
 1. Configure the location of your Webpack output in the `config/webpack/paths.yml` file.
    `webpack_ouput: public/assets/webpack` is the default.
 2. Configure your Webpack scripts to:
-   1. Use the manifest plugin to generate a manifest
-   2. Write output to the directory that you configured in your paths.yml file.
+   1. Use the [webpack-manifest-plugin](https://www.npmjs.com/package/webpack-manifest-plugin) to generate a manifest
+   2. Write output to the directory that you configured in your `/config/webpack/paths.yml` file, taking into account both the `output` and `assets` values.
 3. Use the asset helpers on your layouts to provide the webpack generated files:
    ```erb
    <%# app/views/layouts/application.html.erb %>
