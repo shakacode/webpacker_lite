@@ -17,7 +17,7 @@ If you like this project, show your support by giving us a star!
 
 ## Installation
 
-WebpackerLite is currently compatible with Rails 4.2+.
+Webpacker Lite is currently compatible with Rails 4.2+.
 
 The best way to see the installation of webpacker_lite is to use the generator for React on Rails 8.0.0 or greater.
 
@@ -42,6 +42,46 @@ The best way to see the installation of webpacker_lite is to use the generator f
 Note, you can specify singlar file names or arrays for these asset helpers, even when using the `static` named parameter.
 
 For more details on the helper documentation, see [lib/webpacker_lite/helper.rb](lib/webpacker_lite/helper.rb).
+
+## Confirguration
+Webpacker Lite takes 2 configuration file, `config/webpack/paths.yml` and `config/webpack/development.server.yml`
+
+### `config/webpack/paths.yml`
+
+```yaml
+default: &default
+  output: public           # The default of most rails apps 
+  manifest: manifest.json  # Used in your webpack configuration
+
+development:
+  <<: *default
+  assets: webpack/development # Location development generated files
+
+test:
+  <<: *default
+  assets: webpack/test        # Location test generated files
+
+production:
+  <<: *default
+  assets: webpack/production  # Location production generated files
+```
+
+
+### `config/webpack/development.server.yml`
+
+```yaml
+# Restart webpack-dev-server if you make changes here
+default: &default  
+  # important that the default is false so non-development environments don't use hot reloading
+  enabled: false      
+  host: localhost
+  port: 3500
+
+development:
+  <<: *default
+  # Leaving the default as false so only overriden by an ENV value
+  enabled: false
+```
 
 ## Rake Tasks
 
@@ -98,4 +138,4 @@ for an asset used in your pack code you can reference them like this in your vie
 ```
 
 ## License
-Webpacker is released under the [MIT License](https://opensource.org/licenses/MIT).
+Webpacker Lite is released under the [MIT License](https://opensource.org/licenses/MIT).
