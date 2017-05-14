@@ -4,6 +4,8 @@
 Webpacker Lite provides the webpack enabled asset helpers from [Webpacker](https://github.com/rails/webpacker).
 [React on Rails](https://github.com/shakacode/react_on_rails) version 8 and greater defaults to using Webpacker Lite.
 
+* Why did we fork webpacker to make webpacker_lite? Please provide feedback on my draft article: [Webpacker Lite: Why Did  We Fork Webpacker?](https://medium.com/@railsonmaui/webpacker-lite-why-did-we-fork-webpacker-ee3305688d66)
+
 If you like this project, show your support by giving us a star!
 
 # NEWS
