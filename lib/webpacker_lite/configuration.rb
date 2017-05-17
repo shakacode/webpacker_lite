@@ -4,10 +4,6 @@ require "webpacker_lite/env"
 
 class WebpackerLite::Configuration < WebpackerLite::FileLoader
   class << self
-    def file_path
-      Rails.root.join("config", "webpacker_lite.yml")
-    end
-
     def manifest_path
       Rails.root.join(output_path, paths.fetch(:manifest, "manifest.json"))
     end

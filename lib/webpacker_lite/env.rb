@@ -13,7 +13,19 @@ class WebpackerLite::Env < WebpackerLite::FileLoader
     end
 
     def hot_loading?
-      ENV["REACT_ON_RAILS_ENV"] == "HOT"
+      (ENV["HOT_RELOADING_ENABLED"].present? && (
+      ENV["HOT_RELOADING_ENABLED"].upcase == "YES" ||
+        ENV["HOT_RELOADING_ENABLED"].upcase == "TRUE")) ||
+        current["hot_reloading_enabled_by_default"]
+    end
+
+    # Uses the hot_reloading_server if appropriate
+    def base_url
+      if hot_loading?
+        "http://#{current[:hot_reloading_server]}"
+      else
+        ""
+      end
     end
 
     def file_path

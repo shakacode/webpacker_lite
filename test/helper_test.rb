@@ -17,7 +17,7 @@ class HelperTest < ActionView::TestCase
   end
 
   def test_stylesheet_pack_tag
-    style = %(<link rel="stylesheet" media="screen" href="/webpack/bootstrap-c38deda30895059837cf.css" />)
-    assert_equal @view.stylesheet_pack_tag("bootstrap.css"), style
+    expected_style = %(<link rel="stylesheet" media="screen" href="/webpack/bootstrap-c38deda30895059837cf.css" />)
+    assert_equal @view.stylesheet_pack_tag("bootstrap.css"), expected_style
   end
 end

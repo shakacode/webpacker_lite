@@ -27,7 +27,7 @@ module WebpackerLite::Helper
   #   <%= javascript_pack_tag 'calendar', 'data-turbolinks-track': 'reload' %> # =>
   #   <script src="/public/webpack/production/calendar-1016838bab065ae1e314.js" data-turbolinks-track="reload"></script>
   def javascript_pack_tag(name, **options)
-    javascript_include_tag(WebpackerLite::Manifest.lookup("#{name}#{compute_asset_extname(name, type: :javascript)}"), **options)
+    javascript_include_tag(asset_source(name, :javascript), **options)
   end
 
   # Creates a link tag that references the named pack file(s), as compiled by Webpack per the entries list
@@ -51,19 +51,15 @@ module WebpackerLite::Helper
   #   # <%= stylesheet_pack_tag('main', enabled_when_hot_loading: true) %>
   #   <link rel="stylesheet" media="screen" href="/public/webpack/development/calendar-1016838bab065ae1e122.css" />
   #
-  def stylesheet_pack_tag(*args, **kwargs)
-   return "" if WebpackerLite::Env.hot_loading? && !kwargs[enabled_when_hot_loading].presence
-
-   args.flatten!
-   manifested_names = get_manifests(args)
-   stylesheet_link_tag(*manifested_names, options)
+  def stylesheet_pack_tag(name, **kwargs)
+   return "" if WebpackerLite::Env.hot_loading? && !kwargs[:enabled_when_hot_loading].presence
+   stylesheet_link_tag(asset_source(name, :stylesheet), options)
   end
 
   private
-
-    def get_manifests(names)
-      names.map do |name|
-        WebpackerLite::Manifest.lookup("#{name}#{compute_asset_extname(name, type: :stylesheet)}")
-      end
-    end
+  def asset_source(name, type)
+    url = WebpackerLite::Env.hot_reloading_url
+    path = WebpackerLite::Manifest.lookup("#{name}#{compute_asset_extname(name, type: type)}")
+    "#{url}/#{path}"
+  end
 end

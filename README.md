@@ -67,6 +67,10 @@ Note, placing output files within the Rails `/public` directory is not configura
 1. `hot_reloading_server`: The name of the hot reloading `webpack-dev-server` including the port
 2. `hot_reloading_enabled_by_default`: If hot reloading should default to true
 
+### Hot Reloading Notes
+
+Do not put the output server in your `manifest.json` file. The rails view helpers will automatically prepend the hot_reloading_server to the asset path.
+
 ### Example Configuration `/config/webpacker_lite.yml`
 
 This example config shows how we use different output directories for the webpack generated assets per the type of environment. This is extremely convenient when you want to log redux messages in development but not in your tests.
@@ -124,7 +128,7 @@ production:
   <link rel="stylesheet" media="screen" href="/webpack/development/main-0bd141f6d9360cf4a7f5.js">
   
   <!-- In development mode with hot reloading, using the webpack-dev-server -->
-  <script src="http://localhost:8080/main.js"></script>
+  <script src="http://localhost:8080/webpack/development/main.js"></script>
   <!-- Note, there's no stylesheet tag by default, as your CSS should be inlined in your JS. -->
   
   <!-- In production mode -->
