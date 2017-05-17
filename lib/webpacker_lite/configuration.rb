@@ -4,12 +4,8 @@ require "webpacker_lite/env"
 
 class WebpackerLite::Configuration < WebpackerLite::FileLoader
   class << self
-    def config_path
-      Rails.root.join(paths.fetch(:config, "config/webpack"))
-    end
-
     def file_path
-      Rails.root.join("config", "webpack", "paths.yml")
+      Rails.root.join("config", "webpacker_lite.yml")
     end
 
     def manifest_path
@@ -17,17 +13,13 @@ class WebpackerLite::Configuration < WebpackerLite::FileLoader
     end
 
     def output_path
-      Rails.root.join(paths.fetch(:output, "public"), paths.fetch(:assets, "assets/webpack"))
+      Rails.root.join(paths.fetch(:webpack_public_output_dir, File.join("public", "webpack")))
     end
 
     def paths
       load if WebpackerLite::Env.development?
       raise WebpackerLite::FileLoader::FileLoaderError.new("WebpackerLite::Configuration.load must be called first") unless instance
       instance.data
-    end
-
-    def source_path
-      Rails.root.join(paths.fetch(:source, "app/javascript"))
     end
   end
 

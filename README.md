@@ -1,89 +1,151 @@
 # Webpacker Lite
 ![Gem Version](https://badge.fury.io/rb/webpacker_lite.svg)
 
-Webpacker Lite provides the webpack enabled asset helpers from [Webpacker](https://github.com/rails/webpacker).
+*A slimmer version of Webpacker*
+
+Webpacker Lite provides similar webpack enabled view helpers from [Webpacker](https://github.com/rails/webpacker).
 [React on Rails](https://github.com/shakacode/react_on_rails) version 8 and greater defaults to using Webpacker Lite.
 
-* Why did we fork webpacker to make webpacker_lite? Please provide feedback on my draft article: [Webpacker Lite: Why Did  We Fork Webpacker?](https://medium.com/@railsonmaui/webpacker-lite-why-did-we-fork-webpacker-ee3305688d66)
+For example, these view helpers allow your application's layout to easily reference JavaScript and CSS files created by your Webpack setup, taking into account differences in the Rails environments. With these helpers, there is no reason for Webpack created assets to run through the [Asset Pipeline](http://guides.rubyonrails.org/asset_pipeline.html), as was done in React on Rails 7.x and earlier.
 
 If you like this project, show your support by giving us a star!
+
+# Why Fork?
+
+> Everything should be made as simple as possible, but not simpler.
+
+[Albert Einstein on Wikiquote](https://en.wikiquote.org/wiki/Albert_Einstein)
+
+Why did [ShakaCode](http://www.shakacode.com) fork [rails/webpacker](https://github.com/rails/webpacker)? For [react_on_rails](https://github.com/shakacode/react_on_rails), we wanted a simpler configuration to get the core functionality needed. You configure 2 things:
+
+1. Name of the manifest file.
+2. The directory within `/public` where Webpack will create the manifest and output file.
+
+Optionally, you can configure the name of the server and port for hot reloading, and if hot reloading is the default for a given Rails.env.
+
+For more details on how this project differs from Webpacker and why we forked, please see [Webpacker Lite: Why Did  We Fork Webpacker?](https://medium.com/@railsonmaui/webpacker-lite-why-did-we-fork-webpacker-ee3305688d66)
 
 # NEWS
  
 * 2017-05-03: React on Rails 8.0.0 beta defaults to using webpacker_lite.
 
-## Prerequisites
-
-* Ruby 2+
-* Rails 4.2+
-
 ## Installation
 
-Webpacker Lite is currently compatible with Rails 4.2+.
-
-The best way to see the installation of webpacker_lite is to use the generator for React on Rails 8.0.0 or greater.
+The best way to see the installation of webpacker_lite is to use the generator for React on Rails 8.0.0 or greater. Otherwise, add the gem and create the configuration file described below.
 
 ## Overview
 
-1. Configure the location of your Webpack output in the `config/webpack/paths.yml` file.
-   `webpack_ouput: public/assets/webpack` is the default.
-2. Configure your Webpack scripts to:
-   1. Use the [webpack-manifest-plugin](https://www.npmjs.com/package/webpack-manifest-plugin) to generate a manifest
-   2. Write output to the directory that you configured in your `/config/webpack/paths.yml` file, taking into account both the `output` and `assets` values.
-3. Use the asset helpers on your layouts to provide the webpack generated files:
+1. Configure the `config/webpacker_lite.yml` file, as described below. You will specify the name of the manifest file and the output directory used by step 2.
+2. Use the [webpack-manifest-plugin](https://www.npmjs.com/package/webpack-manifest-plugin) to generate a manifest
+   in the output directory (`webpack_public_output_dir`) that you configured in your `/config/webpacker_lite.yml` file. 
+3. Use the view helpers on your layouts to provide the webpack generated files. Note, these are the same names used by [rails/webpacker](https://github.com/rails/webpacker).
+   These `output` names are **NOT** the actual file names, as the file name may have a [fingerprint](http://guides.rubyonrails.org/asset_pipeline.html#what-is-fingerprinting-and-why-should-i-care-questionmark).
    ```erb
    <%# app/views/layouts/application.html.erb %>
    <%= javascript_pack_tag('main') %>
    <%= stylesheet_pack_tag('main') %>
    ```
-4. If you only want the `stylesheet_pack_tag` to be used for non-hot-reloading, pass the value of the file name in a named parameter called "static", like this:
+4. When hot-reloading, the extract-text-plugin (extracted CSS from being inlined in the JavaScript)is not supported. Therefore, all your hot-reloaded Webpack-compiled CSS will be inlined and we will skip the CSS file by default. If you're not worried about hot-reloading for your CSS, use the `enabled_when_hot_loading: true` option. 
+
    ```erb
-   <%= stylesheet_pack_tag(static: 'main') %>
+   <%= stylesheet_pack_tag('main', enabled_when_hot_loading: true) %> <% # Default is false %>
    ```
+   
+For more details on the helper documentation, see the Ruby comments in [lib/webpacker_lite/helper.rb](lib/webpacker_lite/helper.rb) and please submit PRs here to help us improve the docs!
 
-Note, you can specify singlar file names or arrays for these asset helpers, even when using the `static` named parameter.
+## Configuration
+Webpacker Lite takes one configuration file: `config/webpacker_lite.yml` used to configure two required values and a couple optional values. Note, this file is configured like `config/database.yml` in that you place the values beneath the name of the Rails.env. 
 
-For more details on the helper documentation, see [lib/webpacker_lite/helper.rb](lib/webpacker_lite/helper.rb).
+### Mandatory Configuration within `config/webpacker_lite.yml` 
 
-## Confirguration
-Webpacker Lite takes 2 configuration file, `config/webpack/paths.yml` and `config/webpack/development.server.yml`
+1. `manifest`: The manifest file name 
+1. `webpack_public_output_dir`: The output directory of both the manifest and the webpack static generated files within the `/public` directory.
 
-### `config/webpack/paths.yml`
+Note, placing output files within the Rails `/public` directory is not configurable.
+
+### Optional Configuration within `config/webpacker_lite.yml` 
+1. `hot_reloading_server`: The name of the hot reloading `webpack-dev-server` including the port
+2. `hot_reloading_enabled_by_default`: If hot reloading should default to true
+
+### Example Configuration `/config/webpacker_lite.yml`
+
+This example config shows how we use different output directories for the webpack generated assets per the type of environment. This is extremely convenient when you want to log redux messages in development but not in your tests.
 
 ```yaml
+# /config/webpacker_lite.yml
+# Note: Base output directory of /public is assumed for static files
 default: &default
-  output: public           # The default of most rails apps 
-  manifest: manifest.json  # Used in your webpack configuration
-
+  manifest: manifest.json  
+  # Used in your webpack configuration. Must be created in the
+  # webpack_public_output_dir folder
+  
 development:
   <<: *default
-  assets: webpack/development # Location development generated files
-
+  # generated files for development, in /public/webpack/development
+  webpack_public_output_dir: webpack/development
+  
+  # Default is localhost:3500
+  hot_reloading_server: localhost:3500
+  
+  # Developer note: considering removing this option so it can ONLY be turned by using an ENV value.
+  # Default is false, ENV 'HOT_RELOAD' will always override 
+  hot_reloading_enabled_by_default: false 
+  
 test:
   <<: *default
-  assets: webpack/test        # Location test generated files
+  # generated files for tests, in /public/webpack/test   
+  webpack_public_output_dir: webpack/test
 
 production:
   <<: *default
-  assets: webpack/production  # Location production generated files
+  # generated files for tests, in /public/webpack/production
+  webpack_public_output_dir: webpack/production
 ```
 
+## Example for Development vs Hot Reloading vs Production Mode
 
-### `config/webpack/development.server.yml`
+**erb file**
 
-```yaml
-# Restart webpack-dev-server if you make changes here
-default: &default  
-  # important that the default is false so non-development environments don't use hot reloading
-  enabled: false      
-  host: localhost
-  port: 3500
-
-development:
-  <<: *default
-  # Leaving the default as false so only overriden by an ENV value
-  enabled: false
+```erb
+  <% # app/views/layouts/application.html.erb %>
+  <%= javascript_pack_tag('main') %>
+  <%= stylesheet_pack_tag('main') %>
 ```
+
+**html file**
+
+```html
+  <!-- In test mode -->
+  <script src="/webpack/test/main.js"></script>
+  <link rel="stylesheet" media="screen" href="/webpack/test/main-0bd141f6d9360cf4a7f5.js">
+  
+  <!-- In development mode -->
+  <script src="/webpack/development/main.js"></script>
+  <link rel="stylesheet" media="screen" href="/webpack/development/main-0bd141f6d9360cf4a7f5.js">
+  
+  <!-- In development mode with hot reloading, using the webpack-dev-server -->
+  <script src="http://localhost:8080/main.js"></script>
+  <!-- Note, there's no stylesheet tag by default, as your CSS should be inlined in your JS. -->
+  
+  <!-- In production mode -->
+  <script src="/webpack/production/main-0bd141f6d9360cf4a7f5.js"></script>
+  <link rel="stylesheet" media="screen" href="/webpack/production/main-dc02976b5f94b507e3b6.css">
+```
+
+## Other Helpers: Getting the asset path
+
+The `asset_pack_path` helper provides the path of any given asset that's been compiled by webpack.
+
+For example, if you want to create a `<link rel="prefetch">` or `<img />`
+for an asset used in your pack code you can reference them like this in your view,
+
+```erb
+<img src="<%= asset_pack_path 'calendar.png' %>" />
+<% # => <img src="/webpack/calendar.png" /> %>
+```
+
+## Webpack Helper
+You may use the [React on Rails NPM Package](https://www.npmjs.com/package/react-on-rails), [react-on-rails/webpackConfigLoader](https://github.com/shakacode/react_on_rails/blob/master/webpackConfigLoader.js) to provide your Webpack config with easy access to the YAML settings. Even if you don't use the NPM package, you can use that file to inspire your Webpack configuration.
 
 ## Rake Tasks
 
@@ -100,44 +162,8 @@ If you are using different directories for the output paths per RAILS_ENV, this 
 RAILS_ENV=test rake webpacker_lite:clobber
 ```
 
-## Hot Reloading Config   
-You can also control and configure `webpack-dev-server` settings from
 
-`config/webpack/development.server.yml` file
 
-```yml
-# config/webpack/development.server.yml
-enabled: true
-host: localhost
-port: 8080
-```
-
-## Getting asset path
-
-The `asset_pack_path` helper provides the path of any given asset that's been compiled by webpack.
-
-For example, if you want to create a `<link rel="prefetch">` or `<img />`
-for an asset used in your pack code you can reference them like this in your view,
-
-```erb
-<img src="<%= asset_pack_path 'calendar.png' %>" />
-<% # => <img src="/packs/calendar.png" /> %>
-```
-
-## Example for Development vs Hot Reloading vs Production Mode
-```html
-  <!-- In development mode with webpack-dev-server -->
-  <script src="http://localhost:8080/main.js"></script>
-  <link rel="stylesheet" media="screen" href="http://localhost:8080/main.css">
-  
-  <!-- In development mode -->
-  <script src="/packs/main.js"></script>
-  <link rel="stylesheet" media="screen" href="/packs/main.css">
-  
-  <!-- In production mode -->
-  <script src="/packs/main-0bd141f6d9360cf4a7f5.js"></script>
-  <link rel="stylesheet" media="screen" href="/packs/main-dc02976b5f94b507e3b6.css">
-```
-
-## License
-Webpacker Lite is released under the [MIT License](https://opensource.org/licenses/MIT).
+## Prerequisites
+* Ruby 2+
+* Rails 4.2+

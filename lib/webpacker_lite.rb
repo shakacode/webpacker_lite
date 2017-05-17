@@ -4,6 +4,10 @@ module WebpackerLite
     WebpackerLite::Configuration.load
     WebpackerLite::Manifest.load
   end
+
+  def env
+    WebpackerLite::Env.current.inquiry
+  end
 end
 
 require "webpacker_lite/railtie" if defined?(Rails)

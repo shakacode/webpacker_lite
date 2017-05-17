@@ -17,7 +17,7 @@ class WebpackerLite::Env < WebpackerLite::FileLoader
     end
 
     def file_path
-      Rails.root.join("config", "webpack", "paths.yml")
+      Rails.root.join("config", "webpacker_lite.yml")
     end
   end
 
