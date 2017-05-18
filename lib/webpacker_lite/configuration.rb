@@ -5,17 +5,36 @@ require "webpacker_lite/env"
 class WebpackerLite::Configuration < WebpackerLite::FileLoader
   class << self
     def manifest_path
-      Rails.root.join(output_path, paths.fetch(:manifest, "manifest.json"))
+      Rails.root.join(webpack_public_output_dir,
+                      configuration.fetch(:manifest, "manifest.json"))
     end
 
-    def output_path
-      Rails.root.join(paths.fetch(:webpack_public_output_dir, File.join("public", "webpack")))
+    def webpack_public_output_dir
+      Rails.root.join(
+        File.join("public", configuration.fetch(:webpack_public_output_dir, "webpack")))
     end
 
-    def paths
+    def base_path
+      "/#{configuration.fetch(:webpack_public_output_dir, "webpack")}"
+    end
+
+    # Uses the hot_reloading_server if appropriate
+    def base_url
+      if WebpackerLite::Env.hot_loading?
+        "http://#{configuration[:hot_reloading_server]}"
+      else
+        base_path
+      end
+    end
+
+    def configuration
       load if WebpackerLite::Env.development?
       raise WebpackerLite::FileLoader::FileLoaderError.new("WebpackerLite::Configuration.load must be called first") unless instance
       instance.data
+    end
+
+    def file_path
+      Rails.root.join("config", "webpacker_lite.yml")
     end
   end
 

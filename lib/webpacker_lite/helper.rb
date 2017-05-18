@@ -12,7 +12,9 @@ module WebpackerLite::Helper
   # In production mode:
   #   <%= asset_pack_path 'calendar.css' %> # => "/public/webpack/production/calendar-1016838bab065ae1e122.css"
   def asset_pack_path(name, **options)
-    asset_path(WebpackerLite::Manifest.lookup(name), **options)
+    path = WebpackerLite::Configuration.base_path
+    file = WebpackerLite::Manifest.lookup(name)
+    asset_path("#{path}/#{file}", **options)
   end
 
   # Creates a script tag that references the named pack file, as compiled by Webpack.
@@ -51,14 +53,14 @@ module WebpackerLite::Helper
   #   # <%= stylesheet_pack_tag('main', enabled_when_hot_loading: true) %>
   #   <link rel="stylesheet" media="screen" href="/public/webpack/development/calendar-1016838bab065ae1e122.css" />
   #
-  def stylesheet_pack_tag(name, **kwargs)
-   return "" if WebpackerLite::Env.hot_loading? && !kwargs[:enabled_when_hot_loading].presence
-   stylesheet_link_tag(asset_source(name, :stylesheet), options)
+  def stylesheet_pack_tag(name, **options)
+    return "" if WebpackerLite::Env.hot_loading? && !kwargs[:enabled_when_hot_loading].presence
+    stylesheet_link_tag(asset_source(name, :stylesheet), **options)
   end
 
   private
   def asset_source(name, type)
-    url = WebpackerLite::Env.hot_reloading_url
+    url = WebpackerLite::Configuration.base_url
     path = WebpackerLite::Manifest.lookup("#{name}#{compute_asset_extname(name, type: type)}")
     "#{url}/#{path}"
   end

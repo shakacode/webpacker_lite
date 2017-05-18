@@ -8,6 +8,6 @@ class ConfigurationTest < Minitest::Test
 
   def test_output_path
     output_path = File.join(File.dirname(__FILE__), "test_app/public/webpack").to_s
-    assert_equal WebpackerLite::Configuration.output_path.to_s, output_path
+    assert_equal WebpackerLite::Configuration.webpack_public_output_dir.to_s, output_path
   end
 end

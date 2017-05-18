@@ -21,6 +21,8 @@ Why did [ShakaCode](http://www.shakacode.com) fork [rails/webpacker](https://git
 1. Name of the manifest file.
 2. The directory within `/public` where Webpack will create the manifest and output file.
 
+Then you need to configure your Webpack to generate a simple manifest that maps the base output names to the possibly fingerprinted versions. Note, unlike Webpacker, Webpacker Lite wants your manifest to **NOT** contain any host information.
+
 Optionally, you can configure the name of the server and port for hot reloading, and if hot reloading is the default for a given Rails.env.
 
 For more details on how this project differs from Webpacker and why we forked, please see [Webpacker Lite: Why Did  We Fork Webpacker?](https://medium.com/@railsonmaui/webpacker-lite-why-did-we-fork-webpacker-ee3305688d66)
@@ -165,6 +167,11 @@ If you are using different directories for the output paths per RAILS_ENV, this 
 ```
 RAILS_ENV=test rake webpacker_lite:clobber
 ```
+
+## Differences from Webpacker
+
+1. Configuration setup of an optional single file `/config/webpacker_lite.yml`
+2. Webpacker helpers expect the manifest to contain the server URL when hot reloading. Webpacker Lite expects the manifest to never contain any host information.
 
 
 
