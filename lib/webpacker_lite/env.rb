@@ -13,9 +13,9 @@ class WebpackerLite::Env < WebpackerLite::FileLoader
     end
 
     def hot_loading?
-      (ENV["HOT_RELOADING_ENABLED"].present? && (
-      ENV["HOT_RELOADING_ENABLED"].upcase == "YES" ||
-        ENV["HOT_RELOADING_ENABLED"].upcase == "TRUE")) ||
+      (ENV["HOT_RELOADING"].present? && (
+      ENV["HOT_RELOADING"].upcase == "YES" ||
+        ENV["HOT_RELOADING"].upcase == "TRUE")) ||
         current["hot_reloading_enabled_by_default"]
     end
 

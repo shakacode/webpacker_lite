@@ -18,10 +18,15 @@ class WebpackerLite::Configuration < WebpackerLite::FileLoader
       "/#{configuration.fetch(:webpack_public_output_dir, "webpack")}"
     end
 
-    # Uses the hot_reloading_server if appropriate
+    # Uses the hot_reloading_host if appropriate
     def base_url
       if WebpackerLite::Env.hot_loading?
-        "http://#{configuration[:hot_reloading_server]}"
+        host = configuration[:hot_reloading_host]
+        if host.blank?
+          raise "WebpackerLite's /config/webpacker_lite.yml needs a configuration value for the "\
+            "`hot_reloading_host` for environment #{Rails.env}."
+        end
+        "http://#{host}"
       else
         base_path
       end

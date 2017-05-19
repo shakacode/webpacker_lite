@@ -66,12 +66,12 @@ Webpacker Lite takes one configuration file: `config/webpacker_lite.yml` used to
 Note, placing output files within the Rails `/public` directory is not configurable.
 
 ### Optional Configuration within `config/webpacker_lite.yml` 
-1. `hot_reloading_server`: The name of the hot reloading `webpack-dev-server` including the port
+1. `hot_reloading_host`: The name of the hot reloading `webpack-dev-server` including the port
 2. `hot_reloading_enabled_by_default`: If hot reloading should default to true
 
 ### Hot Reloading Notes
 
-Do not put the output server in your `manifest.json` file. The rails view helpers will automatically prepend the hot_reloading_server to the asset path.
+Do not put the output server in your `manifest.json` file. The rails view helpers will automatically prepend the hot_reloading_host to the asset path.
 
 ### Example Configuration `/config/webpacker_lite.yml`
 
@@ -91,10 +91,10 @@ development:
   webpack_public_output_dir: webpack/development
   
   # Default is localhost:3500
-  hot_reloading_server: localhost:3500
+  hot_reloading_host: localhost:3500
   
   # Developer note: considering removing this option so it can ONLY be turned by using an ENV value.
-  # Default is false, ENV 'HOT_RELOAD' will always override 
+  # Default is false, ENV 'HOT_RELOADING' will always override 
   hot_reloading_enabled_by_default: false 
   
 test:
@@ -173,6 +173,15 @@ RAILS_ENV=test rake webpacker_lite:clobber
 1. Configuration setup of an optional single file `/config/webpacker_lite.yml`
 2. Webpacker helpers expect the manifest to contain the server URL when hot reloading. Webpacker Lite expects the manifest to never contain any host information.
 
+## Hot Reloading
+
+1. Tell Rails and Webpacker Lite that you're hot reloading by setting the ENV value of `HOT_RELOADING=YES` if you are not hot reloading by default by setting the `hot_reloading_enabled_by_default` key in your config file.
+1. By default, the `stylesheet_pack_tag` helper will not create a tag when hot reloading is enabled. Per the note above, when hot-reloading, the extract-text-plugin (extracted CSS from being inlined in the JavaScript)is not supported. Therefore, all your hot-reloaded Webpack-compiled CSS will be inlined and we will skip the CSS file by default.
+
+   ```erb
+   <%= stylesheet_pack_tag('main', enabled_when_hot_loading: true) %> <% # Default is false %>
+   ```
+   
 
 
 ## Prerequisites

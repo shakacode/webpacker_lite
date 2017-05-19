@@ -18,7 +18,18 @@ class WebpackerLite::Manifest < WebpackerLite::FileLoader
     def lookup(name)
       load if WebpackerLite::Env.development? || instance.data.empty?
       raise WebpackerLite::FileLoader::FileLoaderError.new("WebpackerLite::Manifest.load must be called first") unless instance
-      instance.data[name.to_s] || raise(WebpackerLite::FileLoader::NotFoundError.new("Can't find #{name} in #{file_path}. Is webpack still compiling?"))
+      instance.data[name.to_s] || missing_file_error(name)
+    end
+
+    def missing_file_error(name)
+      msg = <<-MSG
+        WebpackerLite can't find #{name} in your manifest #{file_path}. Possible causes:
+          1. You are hot reloading
+          2. Webpack is not running
+          3. You have misconfigured WebpackerLite's config/webpacker_lite.yml file.
+          4. Your Webpack configuration is not creating a manifest.
+      MSG
+      raise(WebpackerLite::FileLoader::NotFoundError.new(msg))
     end
   end
 
