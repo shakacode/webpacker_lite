@@ -26,7 +26,11 @@ class WebpackerLite::Configuration < WebpackerLite::FileLoader
           raise "WebpackerLite's /config/webpacker_lite.yml needs a configuration value for the "\
             "`hot_reloading_host` for environment #{Rails.env}."
         end
-        "http://#{host}"
+        if host.starts_with?("http")
+          host
+        else
+          "http://#{host}"
+        end
       else
         base_path
       end

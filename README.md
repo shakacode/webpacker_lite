@@ -90,7 +90,7 @@ development:
   # generated files for development, in /public/webpack/development
   webpack_public_output_dir: webpack/development
   
-  # Default is localhost:3500
+  # Default is localhost:3500. You can specify the protocol if needed. Defaults to http://.
   hot_reloading_host: localhost:3500
   
   # Developer note: considering removing this option so it can ONLY be turned by using an ENV value.
