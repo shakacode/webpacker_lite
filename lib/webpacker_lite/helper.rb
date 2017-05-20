@@ -59,9 +59,9 @@ module WebpackerLite::Helper
   end
 
   private
-  def asset_source(name, type)
-    url = WebpackerLite::Configuration.base_url
-    path = WebpackerLite::Manifest.lookup("#{name}#{compute_asset_extname(name, type: type)}")
-    "#{url}/#{path}"
-  end
+    def asset_source(name, type)
+      url = WebpackerLite::Configuration.base_url
+      path = WebpackerLite::Manifest.lookup("#{name}#{compute_asset_extname(name, type: type)}")
+      "#{url}/#{path}"
+    end
 end
