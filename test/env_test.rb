@@ -17,7 +17,6 @@ class EnvTest < Minitest::Test
     puts "WebpackerLite::Env.file_path.to_s = #{WebpackerLite::Env.file_path.to_s}"
     puts "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
 
-
     assert_equal WebpackerLite::Env.file_path.to_s, correct_path
   end
 end

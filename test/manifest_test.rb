@@ -17,8 +17,6 @@ class ManifestTest < Minitest::Test
           4. Your Webpack configuration is not creating a manifest.
     MSG
 
-
-
     error = assert_raises WebpackerLite::FileLoader::NotFoundError do
       WebpackerLite::Manifest.lookup(asset_file)
     end
@@ -27,7 +25,6 @@ class ManifestTest < Minitest::Test
     puts "manifest_test.rb: #{__LINE__},  method: #{__method__}"
     puts "error.message = #{error.message}"
     puts "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
-
 
     assert_equal error.message, msg
   end
