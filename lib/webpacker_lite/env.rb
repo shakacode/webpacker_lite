@@ -1,4 +1,4 @@
-# Singleton registry for determining NODE_ENV from config/webpack/paths.yml
+# Singleton registry for determining NODE_ENV from config/webpacker_lite.yml
 require "webpacker_lite/file_loader"
 
 class WebpackerLite::Env < WebpackerLite::FileLoader
@@ -13,11 +13,14 @@ class WebpackerLite::Env < WebpackerLite::FileLoader
     end
 
     def hot_loading?
-      ENV["REACT_ON_RAILS_ENV"] == "HOT"
+      (ENV["HOT_RELOADING"].present? && (
+      ENV["HOT_RELOADING"].upcase == "YES" ||
+        ENV["HOT_RELOADING"].upcase == "TRUE")) ||
+        current["hot_reloading_enabled_by_default"]
     end
 
     def file_path
-      Rails.root.join("config", "webpack", "paths.yml")
+      Rails.root.join("config", "webpacker_lite.yml")
     end
   end
 

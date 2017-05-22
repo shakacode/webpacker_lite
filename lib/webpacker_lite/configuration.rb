@@ -4,30 +4,46 @@ require "webpacker_lite/env"
 
 class WebpackerLite::Configuration < WebpackerLite::FileLoader
   class << self
-    def config_path
-      Rails.root.join(paths.fetch(:config, "config/webpack"))
-    end
-
-    def file_path
-      Rails.root.join("config", "webpack", "paths.yml")
-    end
-
     def manifest_path
-      Rails.root.join(output_path, paths.fetch(:manifest, "manifest.json"))
+      Rails.root.join(webpack_public_output_dir,
+                      configuration.fetch(:manifest, "manifest.json"))
     end
 
-    def output_path
-      Rails.root.join(paths.fetch(:output, "public"), paths.fetch(:assets, "assets/webpack"))
+    def webpack_public_output_dir
+      Rails.root.join(
+        File.join("public", configuration.fetch(:webpack_public_output_dir, "webpack")))
     end
 
-    def paths
+    def base_path
+      "/#{configuration.fetch(:webpack_public_output_dir, "webpack")}"
+    end
+
+    # Uses the hot_reloading_host if appropriate
+    def base_url
+      if WebpackerLite::Env.hot_loading?
+        host = configuration[:hot_reloading_host]
+        if host.blank?
+          raise "WebpackerLite's /config/webpacker_lite.yml needs a configuration value for the "\
+            "`hot_reloading_host` for environment #{Rails.env}."
+        end
+        if host.starts_with?("http")
+          host
+        else
+          "http://#{host}"
+        end
+      else
+        base_path
+      end
+    end
+
+    def configuration
       load if WebpackerLite::Env.development?
       raise WebpackerLite::FileLoader::FileLoaderError.new("WebpackerLite::Configuration.load must be called first") unless instance
       instance.data
     end
 
-    def source_path
-      Rails.root.join(paths.fetch(:source, "app/javascript"))
+    def file_path
+      Rails.root.join("config", "webpacker_lite.yml")
     end
   end
 
