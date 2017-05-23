@@ -1,8 +1,6 @@
 sudo: false
 language: ruby
 rvm:
-  - 2.2.6
-  - 2.3.3
   - 2.4.1
 cache:
   bundler: true
@@ -10,12 +8,30 @@ cache:
     - node_modules
   yarn: true
 
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.9
+
+gemfile:
+  - spec/dummy/Gemfile
+
+env:
+  global:
+    - RAILS_ENV=test
+    - DRIVER=selenium_chrome
+    - CHROME_BIN=/usr/bin/google-chrome
+    - USE_COVERALLS=TRUE
+    - CXX=g++-4.9
+
 install:
   - gem install rubocop
   - nvm install node
   - node -v
   - npm i -g yarn
   - yarn
+  - bundle install
 script:
-  - yarn lint
-  - rubocop
+  - rake
