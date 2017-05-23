@@ -6,16 +6,9 @@ rvm:
   - 2.4.1
 cache:
   bundler: true
-  directories:
-    - node_modules
-  yarn: true
 
 install:
-  - gem install rubocop
-  - nvm install node
-  - node -v
-  - npm i -g yarn
-  - yarn
+  - bundle install
 script:
-  - yarn lint
-  - rubocop
+  - bundle exec rubocop
+  - bundle exec rake test

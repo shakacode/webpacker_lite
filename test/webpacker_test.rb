@@ -1,0 +1,14 @@
+# frozen_string_literal: true
+
+require "minitest/autorun"
+require "rails"
+require "rails/test_help"
+require "webpacker_lite"
+
+module TestApp
+  class Application < ::Rails::Application
+    config.root = File.join(File.dirname(__FILE__), "test_app")
+  end
+end
+
+TestApp::Application.initialize!

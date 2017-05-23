@@ -1,4 +1,4 @@
-# Provides a base singleton-configuration pattern for loading a file, given a path
+# Provides a base singleton-configuration pattern for loading a JSON or YAML file, given a path
 class WebpackerLite::FileLoader
   class NotFoundError < StandardError; end
   class FileLoaderError < StandardError; end
@@ -9,6 +9,10 @@ class WebpackerLite::FileLoader
   class << self
     def load(path = file_path)
       self.instance = new(path)
+    end
+
+    def file_path
+      raise "Subclass of WebpackerLite::FileLoader should override this method"
     end
   end
 
