@@ -21,11 +21,6 @@ class ManifestTest < Minitest::Test
       WebpackerLite::Manifest.lookup(asset_file)
     end
 
-    puts "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
-    puts "manifest_test.rb: #{__LINE__},  method: #{__method__}"
-    puts "error.message = #{error.message}"
-    puts "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
-
     assert_equal error.message, msg
   end
 
