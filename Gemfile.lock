@@ -63,7 +63,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
-    minitest (5.10.2)
+    minitest (5.10.1)
     multi_json (1.12.1)
     nio4r (2.0.0)
     nokogiri (1.7.2)
@@ -128,7 +128,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.12)
-  minitest (~> 5.0)
+  minitest (~> 5.10, != 5.10.2)
   rails
   rake (>= 11.1)
   rubocop (>= 0.47)
