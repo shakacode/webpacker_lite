@@ -7,5 +7,5 @@ gem "rake", ">= 11.1"
 gem "rubocop", ">= 0.47", require: false
 
 group :test do
-  gem "minitest", '~> 5.10', '!= 5.10.2'
+  gem "minitest", "~> 5.10", "!= 5.10.2"
 end
