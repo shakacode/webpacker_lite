@@ -7,6 +7,15 @@ Contributors: please follow the recommendations outlined at [keepachangelog.com]
 *Please add entries here for your pull requests.*
 
 
+## [2.0.0] - 2017-05-23
+All in [#9](https://github.com/shakacode/webpacker_lite/pull/9) by [justin808](https://github.com/justin808) with help from [conturbo](https://github.com/conturbo) on the tests.
+
+* Rewrote README.md.
+* Configuration is simplified and changed to a single file, `/config/webpacker_lite.yml`. See README.md.
+* v1 assumed that manifest.json would contain the host name for hot reloading. v2 puts in the host at the Ruby level.
+* `stylesheet_pack_tag` API changed. ENV value for `HOT_RELOADING` == "TRUE" results in the stylesheet_pack_tag not writing anything due to hot reloading requiring inlined JavaScript of styles and not extracted CSS.
+* Removed any bits of JavaScript from webpacker_lite.
+* Added tests
 
 ## [1.0.0] - 2017-05-03
 Initial release
