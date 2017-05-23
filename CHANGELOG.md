@@ -20,5 +20,6 @@ All in [#9](https://github.com/shakacode/webpacker_lite/pull/9) by [justin808](h
 ## [1.0.0] - 2017-05-03
 Initial release
 
-[Unreleased]: https://github.com/shakacode/webpacker_lite/compare/1.0.0...master
+[Unreleased]: https://github.com/shakacode/webpacker_lite/compare/2.0.0...master
+[2.0.0]: https://github.com/shakacode/react_on_rails/compare/1.0.0...2.0.0
 [1.0.0]: https://github.com/shakacode/react_on_rails/compare/0.0.5...1.0.0
