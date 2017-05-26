@@ -7,22 +7,22 @@ class WebpackerLite::FileLoader
   attr_accessor :data
 
   class << self
-    def load(path = file_path)
+    def load_instance(path = file_path)
       self.instance = new(path)
     end
 
     def file_path
-      raise "Subclass of WebpackerLite::FileLoader should override this method"
+      raise FileLoaderError.new("Subclass of WebpackerLite::FileLoader should override this method")
     end
   end
 
   private
     def initialize(path)
       @path = path
-      @data = load
+      @data = load_data
     end
 
-    def load
+    def load_data
       {}.freeze
     end
 end

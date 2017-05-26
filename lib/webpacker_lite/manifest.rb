@@ -11,31 +11,60 @@ require "webpacker_lite/configuration"
 
 class WebpackerLite::Manifest < WebpackerLite::FileLoader
   class << self
+    def exist?
+      path_object = WebpackerLite::Configuration.manifest_path
+      path_object.exist?
+    end
+
     def file_path
       WebpackerLite::Configuration.manifest_path
     end
 
-    def lookup(name)
-      load if WebpackerLite::Env.development? || instance.data.empty?
-      raise WebpackerLite::FileLoader::FileLoaderError.new("WebpackerLite::Manifest.load must be called first") unless instance
-      instance.data[name.to_s] || missing_file_error(name)
-    end
-
-    def missing_file_error(name)
+    def missing_file_from_manifest_error(bundle_name)
       msg = <<-MSG
-        WebpackerLite can't find #{name} in your manifest #{file_path}. Possible causes:
-          1. You are hot reloading
-          2. Webpack is not running
+        WebpackerLite can't find #{bundle_name} in your manifest #{file_path}. Possible causes:
+          1. You are hot reloading.
+          2. Webpack has not re-run to reflect updates.
           3. You have misconfigured WebpackerLite's config/webpacker_lite.yml file.
           4. Your Webpack configuration is not creating a manifest.
       MSG
       raise(WebpackerLite::FileLoader::NotFoundError.new(msg))
     end
+
+    def lookup!(name)
+      lookup(name) || missing_file_from_manifest_error(name)
+    end
+
+    def lookup(name)
+      instance.confirm_manifest_exists
+
+      load_instance if WebpackerLite::Env.development? || instance.data.empty?
+      raise WebpackerLite::FileLoader::FileLoaderError.new("WebpackerLite::Manifest.load must be called first") unless instance
+      instance.data[name.to_s]
+    end
+  end
+
+  def confirm_manifest_exists
+    raise missing_manifest_file_error(@path) unless File.exist?(@path)
   end
 
   private
-    def load
+
+    def missing_manifest_file_error(path_object)
+      # binding.pry
+      msg = <<-MSG
+
+        WebpackerLite can't find the manifest file: #{path_object}
+        Possible causes:
+          1. You have not invoked webpack.
+          2. You have misconfigured WebpackerLite's config/webpacker_lite.yml file.
+          3. Your Webpack configuration is not creating a manifest.
+    MSG
+      raise(WebpackerLite::FileLoader::NotFoundError.new(msg))
+    end
+
+    def load_data
       return super unless File.exist?(@path)
-      JSON.parse(File.read(@path))
+      @data = JSON.parse(File.read(@path))
     end
 end

@@ -83,7 +83,7 @@ This example config shows how we use different output directories for the webpac
 default: &default
   manifest: manifest.json  
   # Used in your webpack configuration. Must be created in the
-  # webpack_public_output_dir folder
+  # webpack_public_output_dir folder.
   
 development:
   <<: *default
@@ -141,6 +141,7 @@ production:
 ## Other Helpers: Getting the asset path
 
 The `asset_pack_path` helper provides the path of any given asset that's been compiled by webpack.
+Note, this path is a subdirectory public.
 
 For example, if you want to create a `<link rel="prefetch">` or `<img />`
 for an asset used in your pack code you can reference them like this in your view,
@@ -148,6 +149,7 @@ for an asset used in your pack code you can reference them like this in your vie
 ```erb
 <img src="<%= asset_pack_path 'calendar.png' %>" />
 <% # => <img src="/webpack/calendar.png" /> %>
+<% # real file path "public/webpack/calendar.png" /> %>
 ```
 
 ## Webpack Helper
