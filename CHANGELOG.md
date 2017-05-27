@@ -6,6 +6,9 @@ Contributors: please follow the recommendations outlined at [keepachangelog.com]
 ## [Unreleased]
 *Please add entries here for your pull requests.*
 
+
+## [2.0.1] - 2017-05-26
+
 ### Changed
 * Added better error messages for missing files.
 * Added api to check if the manifest exists
@@ -23,6 +26,7 @@ All in [#9](https://github.com/shakacode/webpacker_lite/pull/9) by [justin808](h
 ## [1.0.0] - 2017-05-03
 Initial release
 
-[Unreleased]: https://github.com/shakacode/webpacker_lite/compare/2.0.0...master
+[Unreleased]: https://github.com/shakacode/webpacker_lite/compare/2.0.1...master
+[2.0.1]: https://github.com/shakacode/react_on_rails/compare/2.0.0...2.0.1
 [2.0.0]: https://github.com/shakacode/react_on_rails/compare/1.0.0...2.0.0
 [1.0.0]: https://github.com/shakacode/react_on_rails/compare/0.0.5...1.0.0
