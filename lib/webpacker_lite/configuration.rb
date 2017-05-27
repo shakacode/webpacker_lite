@@ -3,6 +3,8 @@ require "webpacker_lite/file_loader"
 require "webpacker_lite/env"
 
 class WebpackerLite::Configuration < WebpackerLite::FileLoader
+  RAILS_WEB_PUBLIC = "public"
+
   class << self
     def manifest_path
       Rails.root.join(webpack_public_output_dir,
@@ -10,8 +12,7 @@ class WebpackerLite::Configuration < WebpackerLite::FileLoader
     end
 
     def webpack_public_output_dir
-      Rails.root.join(
-        File.join("public", configuration.fetch(:webpack_public_output_dir, "webpack")))
+      Rails.root.join(RAILS_WEB_PUBLIC, configuration.fetch(:webpack_public_output_dir, "webpack"))
     end
 
     def base_path
@@ -37,8 +38,8 @@ class WebpackerLite::Configuration < WebpackerLite::FileLoader
     end
 
     def configuration
-      load if WebpackerLite::Env.development?
-      raise WebpackerLite::FileLoader::FileLoaderError.new("WebpackerLite::Configuration.load must be called first") unless instance
+      load_instance if WebpackerLite::Env.development?
+      raise WebpackerLite::FileLoader::FileLoaderError.new("WebpackerLite::Configuration.load_instance must be called first") unless instance
       instance.data
     end
 
@@ -48,7 +49,7 @@ class WebpackerLite::Configuration < WebpackerLite::FileLoader
   end
 
   private
-    def load
+    def load_data
       return super unless File.exist?(@path)
       HashWithIndifferentAccess.new(YAML.load(File.read(@path))[WebpackerLite::Env.current])
     end

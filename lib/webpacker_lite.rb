@@ -1,8 +1,8 @@
 module WebpackerLite
   def self.bootstrap
-    WebpackerLite::Env.load
-    WebpackerLite::Configuration.load
-    WebpackerLite::Manifest.load
+    WebpackerLite::Env.load_instance
+    WebpackerLite::Configuration.load_instance
+    WebpackerLite::Manifest.load_instance
   end
 
   def env

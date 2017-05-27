@@ -6,6 +6,9 @@ Contributors: please follow the recommendations outlined at [keepachangelog.com]
 ## [Unreleased]
 *Please add entries here for your pull requests.*
 
+### Changed
+* Added better error messages for missing files.
+* Added api to check if the manifest exists
 
 ## [2.0.0] - 2017-05-23
 All in [#9](https://github.com/shakacode/webpacker_lite/pull/9) by [justin808](https://github.com/justin808) with help from [conturbo](https://github.com/conturbo) on the tests.
