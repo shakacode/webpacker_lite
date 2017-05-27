@@ -6,12 +6,16 @@ Contributors: please follow the recommendations outlined at [keepachangelog.com]
 ## [Unreleased]
 *Please add entries here for your pull requests.*
 
+## [2.0.2] - 2017-05-26
+### Fixed
+* Fixed rake assets:clobber. [#11](https://github.com/shakacode/webpacker_lite/pull/11) by [dpuscher](https://github.com/dpuscher).
 
 ## [2.0.1] - 2017-05-26
 
 ### Changed
 * Added better error messages for missing files.
 * Added api to check if the manifest exists
+[#12](https://github.com/shakacode/webpacker_lite/pull/12) by [justin808](https://github.com/justin808).
 
 ## [2.0.0] - 2017-05-23
 All in [#9](https://github.com/shakacode/webpacker_lite/pull/9) by [justin808](https://github.com/justin808) with help from [conturbo](https://github.com/conturbo) on the tests.
@@ -26,7 +30,8 @@ All in [#9](https://github.com/shakacode/webpacker_lite/pull/9) by [justin808](h
 ## [1.0.0] - 2017-05-03
 Initial release
 
-[Unreleased]: https://github.com/shakacode/webpacker_lite/compare/2.0.1...master
+[Unreleased]: https://github.com/shakacode/webpacker_lite/compare/2.0.2...master
+[2.0.2]: https://github.com/shakacode/react_on_rails/compare/2.0.1...2.0.2
 [2.0.1]: https://github.com/shakacode/react_on_rails/compare/2.0.0...2.0.1
 [2.0.0]: https://github.com/shakacode/react_on_rails/compare/1.0.0...2.0.0
 [1.0.0]: https://github.com/shakacode/react_on_rails/compare/0.0.5...1.0.0
