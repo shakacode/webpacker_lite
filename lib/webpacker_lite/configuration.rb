@@ -50,7 +50,6 @@ class WebpackerLite::Configuration < WebpackerLite::FileLoader
 
   private
     def load_data
-      # binding.pry
       return super unless File.exist?(@path)
       HashWithIndifferentAccess.new(YAML.load(File.read(@path))[WebpackerLite::Env.current])
     end

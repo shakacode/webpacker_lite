@@ -11,6 +11,7 @@ require "webpacker_lite/configuration"
 
 class WebpackerLite::Manifest < WebpackerLite::FileLoader
   class << self
+    # Helper method to determine if the manifest file exists.
     def exist?
       path_object = WebpackerLite::Configuration.manifest_path
       path_object.exist?
@@ -31,10 +32,12 @@ class WebpackerLite::Manifest < WebpackerLite::FileLoader
       raise(WebpackerLite::FileLoader::NotFoundError.new(msg))
     end
 
+    # Same as lookup, but raises an error.
     def lookup!(name)
       lookup(name) || missing_file_from_manifest_error(name)
     end
 
+    # Find the real file name from the manifest key.
     def lookup(name)
       instance.confirm_manifest_exists
 
@@ -51,7 +54,6 @@ class WebpackerLite::Manifest < WebpackerLite::FileLoader
   private
 
     def missing_manifest_file_error(path_object)
-      # binding.pry
       msg = <<-MSG
 
         WebpackerLite can't find the manifest file: #{path_object}
@@ -65,6 +67,6 @@ class WebpackerLite::Manifest < WebpackerLite::FileLoader
 
     def load_data
       return super unless File.exist?(@path)
-      @data = JSON.parse(File.read(@path))
+      JSON.parse(File.read(@path))
     end
 end

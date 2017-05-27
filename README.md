@@ -141,7 +141,7 @@ production:
 ## Other Helpers: Getting the asset path
 
 The `asset_pack_path` helper provides the path of any given asset that's been compiled by webpack.
-Note, this path is a subdirectory public.
+Note, the real file path is the subdirectory of the public.
 
 For example, if you want to create a `<link rel="prefetch">` or `<img />`
 for an asset used in your pack code you can reference them like this in your view,
