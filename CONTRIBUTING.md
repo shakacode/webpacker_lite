@@ -67,6 +67,8 @@ What do project maintainers do? What sort of work is involved? [sstephenson](htt
 
 # Releasing
 
+Using [gem-release](https://github.com/svenfuchs/gem-release).
+
 If the version to bump is `2.0.1`
 
 ```
