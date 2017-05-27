@@ -70,6 +70,10 @@ What do project maintainers do? What sort of work is involved? [sstephenson](htt
 If the version to bump is `2.0.1`
 
 ```
+git checkout master
+git pull --rebase
+gem bump --version 2.0.1
 bundle
-gem bump --tag --push --version 2.0.1
+git commit -m "Update Gemfile.lock"
+gem release --tag --push
 ```
