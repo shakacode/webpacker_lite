@@ -70,7 +70,6 @@ What do project maintainers do? What sort of work is involved? [sstephenson](htt
 If the version to bump is `2.0.1`
 
 ```
+bundle
 gem bump --tag --push --version 2.0.1
 ```
-
-
