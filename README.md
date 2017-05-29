@@ -1,7 +1,7 @@
 # Webpacker Lite
 ![Gem Version](https://badge.fury.io/rb/webpacker_lite.svg)
 
-**VERSION 8 of React on Rails is super close!!!** [VERSION 8.0.0-beta.3](https://rubygems.org/gems/react_on_rails/versions/8.0.0.beta.3) has shipped with [webpacker_lite](https://github.com/shakacode/webpacker_lite) support! Please try [the 8.0.0-beta.3 beta](https://rubygems.org/gems/react_on_rails/versions/8.0.0.beta.3) and please report issues! We're **SUPER** close as we've also upgraded the [shakacode/react-webpack-rails-tutorial](https://github.com/shakacode/react-webpack-rails-tutorial) with [PR #395](https://github.com/shakacode/react-webpack-rails-tutorial/pull/395). That PR shows the changes needed to go to Webpacker Lite.
+**VERSION 8 of [React on Rails](https://github.com/shakacode/react_on_rails) is super close!!!** [VERSION 8.0.0-beta.3](https://rubygems.org/gems/react_on_rails/versions/8.0.0.beta.3) has shipped with [webpacker_lite](https://github.com/shakacode/webpacker_lite) support! Please try [the 8.0.0-beta.3 beta](https://rubygems.org/gems/react_on_rails/versions/8.0.0.beta.3) and please report issues! We're **SUPER** close as we've also upgraded the [shakacode/react-webpack-rails-tutorial](https://github.com/shakacode/react-webpack-rails-tutorial) with [PR #395](https://github.com/shakacode/react-webpack-rails-tutorial/pull/395). That PR shows the changes needed to go to Webpacker Lite.
 
 
 *A slimmer version of Webpacker*
