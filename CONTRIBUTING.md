@@ -45,6 +45,10 @@ or to autofix:
 bundle exec rubocop -a
 ```
 
+### Debugging
+
+Enable pry by setting an ENV value for `USE_PRY`. When you use pry, you may get a useless warning about circular references.
+
 ### All ci
 
 ```sh
@@ -69,12 +73,12 @@ What do project maintainers do? What sort of work is involved? [sstephenson](htt
 
 Using [gem-release](https://github.com/svenfuchs/gem-release).
 
-If the version to bump is `2.0.1`
+If the version to bump is `2.0.3`
 
 ```
 git checkout master
 git pull --rebase
-gem bump --version 2.0.1
+gem bump --version 2.0.3
 bundle
 git commit -m "Update Gemfile.lock"
 gem release --tag --push

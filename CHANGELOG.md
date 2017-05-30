@@ -6,6 +6,10 @@ Contributors: please follow the recommendations outlined at [keepachangelog.com]
 ## [Unreleased]
 *Please add entries here for your pull requests.*
 
+## [2.0.3] - 2017-05-29
+### Fixed
+* Fixed caching of manifest.json for tests. [#14](https://github.com/shakacode/webpacker_lite/pull/14) by [justin808](https://github.com/justin808).
+
 ## [2.0.2] - 2017-05-26
 ### Fixed
 * Fixed rake assets:clobber. [#11](https://github.com/shakacode/webpacker_lite/pull/11) by [dpuscher](https://github.com/dpuscher).
@@ -30,7 +34,8 @@ All in [#9](https://github.com/shakacode/webpacker_lite/pull/9) by [justin808](h
 ## [1.0.0] - 2017-05-03
 Initial release
 
-[Unreleased]: https://github.com/shakacode/webpacker_lite/compare/2.0.2...master
+[Unreleased]: https://github.com/shakacode/webpacker_lite/compare/2.0.3...master
+[2.0.3]: https://github.com/shakacode/react_on_rails/compare/2.0.2...2.0.3
 [2.0.2]: https://github.com/shakacode/react_on_rails/compare/2.0.1...2.0.2
 [2.0.1]: https://github.com/shakacode/react_on_rails/compare/2.0.0...2.0.1
 [2.0.0]: https://github.com/shakacode/react_on_rails/compare/1.0.0...2.0.0

@@ -8,10 +8,6 @@ class WebpackerLite::Env < WebpackerLite::FileLoader
       instance.data
     end
 
-    def development?
-      current == "development"
-    end
-
     def hot_loading?
       (ENV["HOT_RELOADING"].present? && (
       ENV["HOT_RELOADING"].upcase == "YES" ||

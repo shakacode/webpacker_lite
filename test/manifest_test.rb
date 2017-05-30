@@ -2,12 +2,12 @@ require "webpacker_test"
 
 class ManifestTest < Minitest::Test
   def test_file_path
-    file_path = File.join(File.dirname(__FILE__), "test_app/public/webpack", "manifest.json").to_s
+    file_path = File.join(File.dirname(__FILE__), "test_app/public/webpack/test", "manifest.json").to_s
     assert_equal WebpackerLite::Manifest.file_path.to_s, file_path
   end
 
   def test_lookup_exception
-    manifest_path = File.join(File.dirname(__FILE__), "test_app/public/webpack", "manifest.json").to_s
+    manifest_path = File.join(File.dirname(__FILE__), "test_app/public/webpack/test", "manifest.json").to_s
     asset_file = "calendar.js"
     msg = <<-MSG
         WebpackerLite can't find #{asset_file} in your manifest #{manifest_path}. Possible causes:
