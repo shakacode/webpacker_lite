@@ -11,7 +11,7 @@ class WebpackerLite::FileLoader
       # Assume production is 100% cached
       return if self.instance && # if we have a singleton
         (env == "production" || # skip if production bc always cached
-          self.instance.mtime == File.mtime(path)) # skip if mtime not changed
+          (File.exist?(path) && self.instance.mtime == File.mtime(path))) # skip if mtime not changed
 
       self.instance = new(path)
     end
@@ -31,7 +31,7 @@ class WebpackerLite::FileLoader
   private
     def initialize(path)
       @path = path
-      @mtime = File.mtime(path)
+      @mtime = File.exist?(path) ? File.mtime(path) : nil
       @data = load_data
     end
 

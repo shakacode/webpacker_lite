@@ -6,6 +6,19 @@ class ManifestTest < Minitest::Test
     assert_equal WebpackerLite::Manifest.file_path.to_s, file_path
   end
 
+  def test_file_not_existing
+    begin
+      file_path = File.join(File.dirname(__FILE__), "test_app/public/webpack/test", "manifest.json")
+      temp_path = "#{file_path}.backup"
+      FileUtils.mv(file_path, temp_path)
+      # Point of this test is to ensure no crash
+      WebpackerLite::Manifest.load_instance
+      assert_equal({}, WebpackerLite::Manifest.instance.data)
+    ensure
+      FileUtils.mv(temp_path, file_path)
+    end
+  end
+
   def test_lookup_exception
     manifest_path = File.join(File.dirname(__FILE__), "test_app/public/webpack/test", "manifest.json").to_s
     asset_file = "calendar.js"
