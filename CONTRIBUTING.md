@@ -80,6 +80,6 @@ git checkout master
 git pull --rebase
 gem bump --version 2.0.3
 bundle
-git commit -m "Update Gemfile.lock"
-gem release --tag --push
+git commit -am "Update Gemfile.lock"
+gem release --tag
 ```
