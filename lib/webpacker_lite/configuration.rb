@@ -38,7 +38,7 @@ class WebpackerLite::Configuration < WebpackerLite::FileLoader
     end
 
     def configuration
-      load_instance if WebpackerLite::Env.development?
+      load_instance
       raise WebpackerLite::FileLoader::FileLoaderError.new("WebpackerLite::Configuration.load_instance must be called first") unless instance
       instance.data
     end

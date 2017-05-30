@@ -8,4 +8,13 @@ gem "rubocop", ">= 0.47", require: false
 
 group :test do
   gem "minitest", "~> 5.10", "!= 5.10.2"
+
+  if ENV["USE_PRY"]
+    gem "pry"
+    gem "pry-byebug"
+    gem "pry-doc"
+    gem "pry-rails"
+    gem "pry-rescue"
+    gem "pry-stack_explorer"
+  end
 end

@@ -41,7 +41,7 @@ class WebpackerLite::Manifest < WebpackerLite::FileLoader
     def lookup(name)
       instance.confirm_manifest_exists
 
-      load_instance if WebpackerLite::Env.development? || instance.data.empty?
+      load_instance
       raise WebpackerLite::FileLoader::FileLoaderError.new("WebpackerLite::Manifest.load must be called first") unless instance
       instance.data[name.to_s]
     end
