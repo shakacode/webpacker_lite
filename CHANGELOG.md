@@ -5,6 +5,9 @@ Contributors: please follow the recommendations outlined at [keepachangelog.com]
 
 ## [Unreleased]
 *Please add entries here for your pull requests.*
+## [2.0.4] - 2017-05-29
+### Fixed
+* Code handles case of missing file and mtime. [#15](https://github.com/shakacode/webpacker_lite/pull/15) by [justin808](https://github.com/justin808).
 
 ## [2.0.3] - 2017-05-29
 ### Fixed
@@ -34,7 +37,8 @@ All in [#9](https://github.com/shakacode/webpacker_lite/pull/9) by [justin808](h
 ## [1.0.0] - 2017-05-03
 Initial release
 
-[Unreleased]: https://github.com/shakacode/webpacker_lite/compare/2.0.3...master
+[Unreleased]: https://github.com/shakacode/webpacker_lite/compare/2.0.4...master
+[2.0.4]: https://github.com/shakacode/react_on_rails/compare/2.0.3...2.0.4
 [2.0.3]: https://github.com/shakacode/react_on_rails/compare/2.0.2...2.0.3
 [2.0.2]: https://github.com/shakacode/react_on_rails/compare/2.0.1...2.0.2
 [2.0.1]: https://github.com/shakacode/react_on_rails/compare/2.0.0...2.0.1
