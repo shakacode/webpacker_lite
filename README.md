@@ -1,8 +1,7 @@
 # Webpacker Lite
 ![Gem Version](https://badge.fury.io/rb/webpacker_lite.svg) [![Build Status](https://travis-ci.org/shakacode/react_on_rails.svg?branch=master)](https://travis-ci.org/shakacode/react_on_rails)
 
-**VERSION 8 of [React on Rails](https://github.com/shakacode/react_on_rails) is super close!!!** [VERSION 8.0.0-beta.3](https://rubygems.org/gems/react_on_rails/versions/8.0.0.beta.3) has shipped with [webpacker_lite](https://github.com/shakacode/webpacker_lite) support! Please try [the 8.0.0-beta.3 beta](https://rubygems.org/gems/react_on_rails/versions/8.0.0.beta.3) and please report issues! We're **SUPER** close as we've also upgraded the [shakacode/react-webpack-rails-tutorial](https://github.com/shakacode/react-webpack-rails-tutorial) with [PR #395](https://github.com/shakacode/react-webpack-rails-tutorial/pull/395). That PR shows the changes needed to go to Webpacker Lite.
-
+**VERSION 8 of [React on Rails](https://github.com/shakacode/react_on_rails) has shipped with [webpacker_lite](https://github.com/shakacode/webpacker_lite) support! [react-webpacker-rails-tutorial PR #395](https://github.com/shakacode/react-webpack-rails-tutorial/pull/395) shows the changes needed for migration to Webpacker Lite.
 
 *A slimmer version of Webpacker*
 
@@ -19,10 +18,10 @@ If you like this project, show your support by giving us a star!
 
 [Albert Einstein on Wikiquote](https://en.wikiquote.org/wiki/Albert_Einstein)
 
-Why did [ShakaCode](http://www.shakacode.com) fork [rails/webpacker](https://github.com/rails/webpacker)? For [react_on_rails](https://github.com/shakacode/react_on_rails), we wanted a simpler configuration to get the core functionality needed. You configure 2 things:
+Why did [ShakaCode](http://www.shakacode.com) fork [rails/webpacker](https://github.com/rails/webpacker)? 2 reasons:
 
-1. Name of the manifest file.
-2. The directory within `/public` where Webpack will create the manifest and output file.
+1. We needed the ability to quickly make changes needed by [react_on_rails](https://github.com/shakacode/react_on_rails)
+2. We preferred a simpler configuration to get the core functionality needed. You configure just one thing: The directory within `/public` where Webpack will create the manifest and output file.
 
 Then you need to configure your Webpack to generate a simple manifest that maps the base output names to the possibly fingerprinted versions. Note, unlike Webpacker, Webpacker Lite wants your manifest to **NOT** contain any host information.
 
@@ -63,12 +62,12 @@ Webpacker Lite takes one configuration file: `config/webpacker_lite.yml` used to
 
 ### Mandatory Configuration within `config/webpacker_lite.yml` 
 
-1. `manifest`: The manifest file name 
 1. `webpack_public_output_dir`: The output directory of both the manifest and the webpack static generated files within the `/public` directory.
 
 Note, placing output files within the Rails `/public` directory is not configurable.
 
 ### Optional Configuration within `config/webpacker_lite.yml` 
+1. `manifest`: The manifest file name 
 1. `hot_reloading_host`: The name of the hot reloading `webpack-dev-server` including the port
 2. `hot_reloading_enabled_by_default`: If hot reloading should default to true
 
@@ -176,7 +175,7 @@ RAILS_ENV=test rake webpacker_lite:clobber
 ## Differences from Webpacker
 
 1. Configuration setup of an optional single file `/config/webpacker_lite.yml`
-2. Webpacker helpers expect the manifest to contain the server URL when hot reloading. Webpacker Lite expects the manifest to never contain any host information.
+2. Webpacker helpers expect the manifest to contain the server URL when hot reloading. Webpacker Lite expects the manifest **to never contain any host information**.
 
 ## Hot Reloading
 
@@ -186,8 +185,6 @@ RAILS_ENV=test rake webpacker_lite:clobber
    ```erb
    <%= stylesheet_pack_tag('main', enabled_when_hot_loading: true) %> <% # Default is false %>
    ```
-   
-
 
 ## Prerequisites
 * Ruby 2+
