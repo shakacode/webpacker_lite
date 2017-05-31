@@ -18,16 +18,17 @@ If you like this project, show your support by giving us a star!
 
 [Albert Einstein on Wikiquote](https://en.wikiquote.org/wiki/Albert_Einstein)
 
-Why did [ShakaCode](http://www.shakacode.com) fork [rails/webpacker](https://github.com/rails/webpacker)? 2 reasons:
+Why did [ShakaCode](http://www.shakacode.com) fork [rails/webpacker](https://github.com/rails/webpacker)? 3 reasons:
 
-1. We needed the ability to quickly make changes needed by [react_on_rails](https://github.com/shakacode/react_on_rails)
+1. React on Rails needs only the helpers in Webpacker to obtain the correct file path or relative URL to Webpack created assets, given different Rails environments, fingerprinting of assets, hot-reloading, etc.
 2. We preferred a simpler configuration to get the core functionality needed. You configure just one thing: The directory within `/public` where Webpack will create the manifest and output file.
+3. We needed the ability to quickly make changes needed by [react_on_rails](https://github.com/shakacode/react_on_rails)
 
-Then you need to configure your Webpack to generate a simple manifest that maps the base output names to the possibly fingerprinted versions. Note, unlike Webpacker, Webpacker Lite wants your manifest to **NOT** contain any host information.
+Then you configure your Webpack config to generate a simple manifest that maps the base output names to the possibly fingerprinted versions. Note, unlike Webpacker, Webpacker Lite wants your manifest to **NOT** contain any host information.
 
 Optionally, you can configure the name of the server and port for hot reloading, and if hot reloading is the default for a given Rails.env.
 
-For more details on how this project differs from Webpacker and why we forked, please see [Webpacker Lite: Why Did  We Fork Webpacker?](https://medium.com/@railsonmaui/webpacker-lite-why-did-we-fork-webpacker-ee3305688d66)
+For more details on how this project differs from Webpacker and why we forked, please see [Webpacker Lite: Why Did  We Fork Webpacker?](https://medium.com/@railsonmaui/webpacker-lite-why-did-i-fork-webpacker-f0a7707fac92)
 
 # NEWS
  
