@@ -1,7 +1,7 @@
 # Webpacker Lite
 ![Gem Version](https://badge.fury.io/rb/webpacker_lite.svg) [![Build Status](https://travis-ci.org/shakacode/react_on_rails.svg?branch=master)](https://travis-ci.org/shakacode/react_on_rails)
 
-**VERSION 8 of [React on Rails](https://github.com/shakacode/react_on_rails) has shipped with [webpacker_lite](https://github.com/shakacode/webpacker_lite) support! [react-webpacker-rails-tutorial PR #395](https://github.com/shakacode/react-webpack-rails-tutorial/pull/395) shows the changes needed for migration to Webpacker Lite.
+**VERSION 8 of [React on Rails](https://github.com/shakacode/react_on_rails) has shipped with [webpacker_lite](https://github.com/shakacode/webpacker_lite) support!** [react-webpacker-rails-tutorial PR #395](https://github.com/shakacode/react-webpack-rails-tutorial/pull/395) shows the changes needed for migration to Webpacker Lite.
 
 *A slimmer version of Webpacker*
 
