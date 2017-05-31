@@ -40,9 +40,8 @@ The best way to see the installation of webpacker_lite is to use the generator f
 
 ## Overview
 
-1. Configure the `config/webpacker_lite.yml` file, as described below. You will specify the name of the manifest file and the output directory used by step 2.
-2. Use the [webpack-manifest-plugin](https://www.npmjs.com/package/webpack-manifest-plugin) to generate a manifest
-   in the output directory (`webpack_public_output_dir`) that you configured in your `/config/webpacker_lite.yml` file. 
+1. Configure the `config/webpacker_lite.yml` file, as described below. You will specify the name of the manifest file and the output directory used by step 2. The directories you specify are within your `/public` directory.
+2. Configure Webpack to use an output path that matches your (`webpack_public_output_dir`) that you configured in your `/config/webpacker_lite.yml`. Use the [webpack-manifest-plugin](https://www.npmjs.com/package/webpack-manifest-plugin) to generate a manifest.
 3. Use the view helpers on your layouts to provide the webpack generated files. Note, these are the same names used by [rails/webpacker](https://github.com/rails/webpacker).
    These `output` names are **NOT** the actual file names, as the file name may have a [fingerprint](http://guides.rubyonrails.org/asset_pipeline.html#what-is-fingerprinting-and-why-should-i-care-questionmark).
    ```erb
