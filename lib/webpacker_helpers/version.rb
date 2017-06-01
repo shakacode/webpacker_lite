@@ -1,3 +1,3 @@
-module WebpackerLite
+module WebpackerHelpers
   VERSION = "3.0.0.beta.1".freeze
 end
