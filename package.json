@@ -1,0 +1,22 @@
+{
+  "name": "webpacker-helpers",
+  "version": "3.0.0-beta.1",
+  "description": "![Gem Version](https://badge.fury.io/rb/webpacker_helpers.svg)",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shakacode/webpacker_lite.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shakacode/webpacker_lite/issues"
+  },
+  "homepage": "https://github.com/shakacode/webpacker_lite#readme"
+}
