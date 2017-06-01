@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    webpacker_helpers (2.0.4)
+    webpacker_helpers (3.0.0.beta.1)
       activesupport (>= 4.2)
       multi_json (~> 1.2)
       railties (>= 4.2)
@@ -53,7 +53,7 @@ GEM
     erubi (1.6.0)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
-    i18n (0.8.1)
+    i18n (0.8.4)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.5)
@@ -65,7 +65,7 @@ GEM
     mini_portile2 (2.1.0)
     minitest (5.10.1)
     multi_json (1.12.1)
-    nio4r (2.1.0)
+    nio4r (2.0.0)
     nokogiri (1.7.2)
       mini_portile2 (~> 2.1.0)
     parallel (1.11.2)

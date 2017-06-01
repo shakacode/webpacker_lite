@@ -1,10 +1,10 @@
-# Singleton registry for determining NODE_ENV from config/webpacker_lite.yml
-require "webpacker_lite/file_loader"
+# Singleton registry for determining NODE_ENV from config/webpacker_helpers.yml
+require "webpacker_helpers/file_loader"
 
-class WebpackerLite::Env < WebpackerLite::FileLoader
+class WebpackerHelpers::Env < WebpackerHelpers::FileLoader
   class << self
     def current
-      raise WebpackerLite::FileLoader::FileLoaderError.new("WebpackerLite::Env.load must be called first") unless instance
+      raise WebpackerHelpers::FileLoader::FileLoaderError.new("WebpackerHelpers::Env.load must be called first") unless instance
       instance.data
     end
 
@@ -16,7 +16,7 @@ class WebpackerLite::Env < WebpackerLite::FileLoader
     end
 
     def file_path
-      Rails.root.join("config", "webpacker_lite.yml")
+      Rails.root.join("config", "webpacker_helpers.yml")
     end
   end
 

@@ -1,8 +1,8 @@
 # Loads webpacker configuration from config/webpack/paths.yml
-require "webpacker_lite/file_loader"
-require "webpacker_lite/env"
+require "webpacker_helpers/file_loader"
+require "webpacker_helpers/env"
 
-class WebpackerLite::Configuration < WebpackerLite::FileLoader
+class WebpackerHelpers::Configuration < WebpackerHelpers::FileLoader
   RAILS_WEB_PUBLIC = "public"
 
   class << self
@@ -21,10 +21,10 @@ class WebpackerLite::Configuration < WebpackerLite::FileLoader
 
     # Uses the hot_reloading_host if appropriate
     def base_url
-      if WebpackerLite::Env.hot_loading?
+      if WebpackerHelpers::Env.hot_loading?
         host = configuration[:hot_reloading_host]
         if host.blank?
-          raise "WebpackerLite's /config/webpacker_lite.yml needs a configuration value for the "\
+          raise "WebpackerHelpers's /config/webpacker_helpers.yml needs a configuration value for the "\
             "`hot_reloading_host` for environment #{Rails.env}."
         end
         if host.starts_with?("http")
@@ -39,18 +39,18 @@ class WebpackerLite::Configuration < WebpackerLite::FileLoader
 
     def configuration
       load_instance
-      raise WebpackerLite::FileLoader::FileLoaderError.new("WebpackerLite::Configuration.load_instance must be called first") unless instance
+      raise WebpackerHelpers::FileLoader::FileLoaderError.new("WebpackerHelpers::Configuration.load_instance must be called first") unless instance
       instance.data
     end
 
     def file_path
-      Rails.root.join("config", "webpacker_lite.yml")
+      Rails.root.join("config", "webpacker_helpers.yml")
     end
   end
 
   private
     def load_data
       return super unless File.exist?(@path)
-      HashWithIndifferentAccess.new(YAML.load(File.read(@path))[WebpackerLite::Env.current])
+      HashWithIndifferentAccess.new(YAML.load(File.read(@path))[WebpackerHelpers::Env.current])
     end
 end

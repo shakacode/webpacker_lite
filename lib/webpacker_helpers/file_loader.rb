@@ -1,5 +1,5 @@
 # Provides a base singleton-configuration pattern for loading a JSON or YAML file, given a path
-class WebpackerLite::FileLoader
+class WebpackerHelpers::FileLoader
   class NotFoundError < StandardError; end
   class FileLoaderError < StandardError; end
 
@@ -17,7 +17,7 @@ class WebpackerLite::FileLoader
     end
 
     def file_path
-      raise FileLoaderError.new("Subclass of WebpackerLite::FileLoader should override this method")
+      raise FileLoaderError.new("Subclass of WebpackerHelpers::FileLoader should override this method")
     end
 
     private

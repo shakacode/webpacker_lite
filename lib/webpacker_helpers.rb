@@ -1,13 +1,13 @@
-module WebpackerLite
+module WebpackerHelpers
   def self.bootstrap
-    WebpackerLite::Env.load_instance
-    WebpackerLite::Configuration.load_instance
-    WebpackerLite::Manifest.load_instance
+    WebpackerHelpers::Env.load_instance
+    WebpackerHelpers::Configuration.load_instance
+    WebpackerHelpers::Manifest.load_instance
   end
 
   def env
-    WebpackerLite::Env.current.inquiry
+    WebpackerHelpers::Env.current.inquiry
   end
 end
 
-require "webpacker_lite/railtie" if defined?(Rails)
+require "webpacker_helpers/railtie" if defined?(Rails)

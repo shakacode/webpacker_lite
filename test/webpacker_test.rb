@@ -7,7 +7,7 @@ end
 require "minitest/autorun"
 require "rails"
 require "rails/test_help"
-require "webpacker_lite"
+require "webpacker_helpers"
 
 Rails.env = "test"
 

@@ -60,7 +60,7 @@ rake
 Use the relative path syntax in your gemfile.
 
 ```ruby
-gem "webpacker_lite", path: "../../../webpacker_lite"
+gem "webpacker_helpers", path: "../../../webpacker_helpers"
 ```
 
 # Advice for Project Maintainers and Contributors

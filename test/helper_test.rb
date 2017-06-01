@@ -3,7 +3,7 @@ require "webpacker_test"
 class HelperTest < ActionView::TestCase
   def setup
     @view = ActionView::Base.new
-    @view.extend WebpackerLite::Helper
+    @view.extend WebpackerHelpers::Helper
   end
 
   def test_asset_pack_path

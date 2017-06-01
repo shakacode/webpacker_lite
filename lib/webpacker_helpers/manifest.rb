@@ -5,31 +5,31 @@
 # files, # "/public/webpack/calendar-1016838bab065ae1e314.js" and
 # "/webpack/calendar-1016838bab065ae1e314.css" for long-term caching
 
-require "webpacker_lite/file_loader"
-require "webpacker_lite/env"
-require "webpacker_lite/configuration"
+require "webpacker_helpers/file_loader"
+require "webpacker_helpers/env"
+require "webpacker_helpers/configuration"
 
-class WebpackerLite::Manifest < WebpackerLite::FileLoader
+class WebpackerHelpers::Manifest < WebpackerHelpers::FileLoader
   class << self
     # Helper method to determine if the manifest file exists.
     def exist?
-      path_object = WebpackerLite::Configuration.manifest_path
+      path_object = WebpackerHelpers::Configuration.manifest_path
       path_object.exist?
     end
 
     def file_path
-      WebpackerLite::Configuration.manifest_path
+      WebpackerHelpers::Configuration.manifest_path
     end
 
     def missing_file_from_manifest_error(bundle_name)
       msg = <<-MSG
-        WebpackerLite can't find #{bundle_name} in your manifest #{file_path}. Possible causes:
+        WebpackerHelpers can't find #{bundle_name} in your manifest #{file_path}. Possible causes:
           1. You are hot reloading.
           2. Webpack has not re-run to reflect updates.
-          3. You have misconfigured WebpackerLite's config/webpacker_lite.yml file.
+          3. You have misconfigured WebpackerHelpers's config/webpacker_helpers.yml file.
           4. Your Webpack configuration is not creating a manifest.
       MSG
-      raise(WebpackerLite::FileLoader::NotFoundError.new(msg))
+      raise(WebpackerHelpers::FileLoader::NotFoundError.new(msg))
     end
 
     # Same as lookup, but raises an error.
@@ -42,7 +42,7 @@ class WebpackerLite::Manifest < WebpackerLite::FileLoader
       instance.confirm_manifest_exists
 
       load_instance
-      raise WebpackerLite::FileLoader::FileLoaderError.new("WebpackerLite::Manifest.load must be called first") unless instance
+      raise WebpackerHelpers::FileLoader::FileLoaderError.new("WebpackerHelpers::Manifest.load must be called first") unless instance
       instance.data[name.to_s]
     end
   end
@@ -56,13 +56,13 @@ class WebpackerLite::Manifest < WebpackerLite::FileLoader
     def missing_manifest_file_error(path_object)
       msg = <<-MSG
 
-        WebpackerLite can't find the manifest file: #{path_object}
+        WebpackerHelpers can't find the manifest file: #{path_object}
         Possible causes:
           1. You have not invoked webpack.
-          2. You have misconfigured WebpackerLite's config/webpacker_lite.yml file.
+          2. You have misconfigured WebpackerHelpers's config/webpacker_helpers.yml file.
           3. Your Webpack configuration is not creating a manifest.
     MSG
-      raise(WebpackerLite::FileLoader::NotFoundError.new(msg))
+      raise(WebpackerHelpers::FileLoader::NotFoundError.new(msg))
     end
 
     def load_data

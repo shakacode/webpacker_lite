@@ -1,7 +1,7 @@
-require "webpacker_lite/manifest"
-require "webpacker_lite/env"
+require "webpacker_helpers/manifest"
+require "webpacker_helpers/env"
 
-module WebpackerLite::Helper
+module WebpackerHelpers::Helper
   # Computes the full path for a given webpacker asset.
   # Return relative path using manifest.json and passes it to asset_url helper
   # This will use asset_path internally, so most of their behaviors will be the same.
@@ -12,8 +12,8 @@ module WebpackerLite::Helper
   # In production mode:
   #   <%= asset_pack_path 'calendar.css' %> # => "/public/webpack/production/calendar-1016838bab065ae1e122.css"
   def asset_pack_path(name, **options)
-    path = WebpackerLite::Configuration.base_path
-    file = WebpackerLite::Manifest.lookup(name)
+    path = WebpackerHelpers::Configuration.base_path
+    file = WebpackerHelpers::Manifest.lookup(name)
     asset_path("#{path}/#{file}", **options)
   end
 
@@ -54,14 +54,14 @@ module WebpackerLite::Helper
   #   <link rel="stylesheet" media="screen" href="/public/webpack/development/calendar-1016838bab065ae1e122.css" />
   #
   def stylesheet_pack_tag(name, **options)
-    return "" if WebpackerLite::Env.hot_loading? && !options[:enabled_when_hot_loading].presence
+    return "" if WebpackerHelpers::Env.hot_loading? && !options[:enabled_when_hot_loading].presence
     stylesheet_link_tag(asset_source(name, :stylesheet), **options)
   end
 
   private
     def asset_source(name, type)
-      url = WebpackerLite::Configuration.base_url
-      path = WebpackerLite::Manifest.lookup("#{name}#{compute_asset_extname(name, type: type)}")
+      url = WebpackerHelpers::Configuration.base_url
+      path = WebpackerHelpers::Manifest.lookup("#{name}#{compute_asset_extname(name, type: type)}")
       "#{url}/#{path}"
     end
 end
