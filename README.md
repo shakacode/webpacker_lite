@@ -3,6 +3,8 @@
 
 *A slimmer version of Webpacker*
 
+Note, we may eventually merge Webpacker Lite changes back into [Webpacker, per this discussion](https://github.com/rails/webpacker/issues/464). If so, any changes will be minor if you're using Webpacker Lite. In the meantime, we have something _stable_ for React on Rails projects!
+
 Webpacker Lite provides similar webpack enabled view helpers from [Webpacker](https://github.com/rails/webpacker).
 
 For example, these view helpers allow your application's layout to easily reference JavaScript and CSS files created by your Webpack setup, taking into account differences in the Rails environments. With these helpers, there is no reason for Webpack created assets to run through the [Asset Pipeline](http://guides.rubyonrails.org/asset_pipeline.html), as was done in React on Rails 7.x and earlier.
