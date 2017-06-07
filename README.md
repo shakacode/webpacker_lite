@@ -3,7 +3,7 @@
 
 *A slimmer version of Webpacker*
 
-Note, we may eventually merge Webpacker Lite changes back into [Webpacker, per this discussion](https://github.com/rails/webpacker/issues/464). If so, any changes will be minor if you're using Webpacker Lite. In the meantime, we have something _stable_ for React on Rails projects!
+Note, we may eventually merge Webpacker Lite changes back into [Webpacker, per this discussion](https://github.com/rails/webpacker/issues/464). If so, any changes will be minor if you're using Webpacker Lite. In the meantime, we have something _stable_ for React on Rails projects! If you like what you see here, please [chime in here in the Webpacker discussion](https://github.com/rails/webpacker/issues/464#issuecomment-306080102).
 
 Webpacker Lite provides similar webpack enabled view helpers from [Webpacker](https://github.com/rails/webpacker).
 
