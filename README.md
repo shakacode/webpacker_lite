@@ -1,5 +1,5 @@
 # Webpacker Lite
-![Gem Version](https://badge.fury.io/rb/webpacker_lite.svg) [![Build Status](https://travis-ci.org/shakacode/react_on_rails.svg?branch=master)](https://travis-ci.org/shakacode/react_on_rails)
+![Gem Version](https://badge.fury.io/rb/webpacker_lite.svg) [![Build Status](https://travis-ci.org/shakacode/webpacker_lite.svg?branch=master)](https://travis-ci.org/shakacode/webpacker_lite)
 
 *A slimmer version of Webpacker*
 
