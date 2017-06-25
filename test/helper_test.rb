@@ -20,4 +20,14 @@ class HelperTest < ActionView::TestCase
     expected_style = %(<link rel="stylesheet" media="screen" href="/webpack/test/bootstrap-c38deda30895059837cf.css" />)
     assert_equal @view.stylesheet_pack_tag("bootstrap.css"), expected_style
   end
+
+  def test_unmanifested_javascript_pack_tag
+    script = %(<script src="/webpack/test/bootstrap.js"></script>)
+    assert_equal @view.unmanifested_javascript_pack_tag("bootstrap"), script
+  end
+
+  def test_unmanifested_javascript_pack_tag
+    expected_style = %(<link rel="stylesheet" media="screen" href="/webpack/test/bootstrap.css" />)
+    assert_equal @view.unmanifested_stylesheet_pack_tag("bootstrap"), expected_style
+  end
 end

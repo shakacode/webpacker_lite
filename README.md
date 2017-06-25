@@ -19,7 +19,7 @@ If you like this project, show your support by giving us a star!
 
 [Albert Einstein on Wikiquote](https://en.wikiquote.org/wiki/Albert_Einstein)
 
-Why did [ShakaCode](http://www.shakacode.com) fork [rails/webpacker](https://github.com/rails/webpacker)? 
+Why did [ShakaCode](http://www.shakacode.com) fork [rails/webpacker](https://github.com/rails/webpacker)?
 
 3 reasons:
 
@@ -30,7 +30,7 @@ Why did [ShakaCode](http://www.shakacode.com) fork [rails/webpacker](https://git
 For more details on how this project differs from Webpacker and why we forked, please see [Webpacker Lite: Why Fork Webpacker?](https://blog.shakacode.com/webpacker-lite-why-fork-webpacker-f0a7707fac92).
 
 # NEWS
- 
+
 * 2017-05-29: React on Rails 8.0.0 shipped, defaulting to webpacker_lite.
 
 ## Installation
@@ -48,25 +48,25 @@ The best way to see the installation of webpacker_lite is to use the generator f
    <%= javascript_pack_tag('main') %>
    <%= stylesheet_pack_tag('main') %>
    ```
-4. When hot-reloading, the extract-text-plugin (extracted CSS from being inlined in the JavaScript)is not supported. Therefore, all your hot-reloaded Webpack-compiled CSS will be inlined and we will skip the CSS file by default. If you're not worried about hot-reloading for your CSS, use the `enabled_when_hot_loading: true` option. 
+4. When hot-reloading, the extract-text-plugin (extracted CSS from being inlined in the JavaScript)is not supported. Therefore, all your hot-reloaded Webpack-compiled CSS will be inlined and we will skip the CSS file by default. If you're not worried about hot-reloading for your CSS, use the `enabled_when_hot_loading: true` option.
 
    ```erb
    <%= stylesheet_pack_tag('main', enabled_when_hot_loading: true) %> <% # Default is false %>
    ```
-   
+
 For more details on the helper documentation, see the Ruby comments in [lib/webpacker_lite/helper.rb](lib/webpacker_lite/helper.rb) and please submit PRs here to help us improve the docs!
 
 ## Configuration
-Webpacker Lite takes one configuration file: `config/webpacker_lite.yml` used to configure two required values and a couple optional values. Note, this file is configured like `config/database.yml` in that you place the values beneath the name of the Rails.env. 
+Webpacker Lite takes one configuration file: `config/webpacker_lite.yml` used to configure two required values and a couple optional values. Note, this file is configured like `config/database.yml` in that you place the values beneath the name of the Rails.env.
 
-### Mandatory Configuration within `config/webpacker_lite.yml` 
+### Mandatory Configuration within `config/webpacker_lite.yml`
 
 1. `webpack_public_output_dir`: The output directory of both the manifest and the webpack static generated files within the `/public` directory.
 
 Note, placing output files within the Rails `/public` directory is not configurable.
 
-### Optional Configuration within `config/webpacker_lite.yml` 
-1. `manifest`: The manifest file name 
+### Optional Configuration within `config/webpacker_lite.yml`
+1. `manifest`: The manifest file name
 1. `hot_reloading_host`: The name of the hot reloading `webpack-dev-server` including the port
 2. `hot_reloading_enabled_by_default`: If hot reloading should default to true
 
@@ -85,19 +85,19 @@ default: &default
   manifest: manifest.json  
   # Used in your webpack configuration. Must be created in the
   # webpack_public_output_dir folder.
-  
+
 development:
   <<: *default
   # generated files for development, in /public/webpack/development
   webpack_public_output_dir: webpack/development
-  
+
   # Default is localhost:3500. You can specify the protocol if needed. Defaults to http://.
   hot_reloading_host: localhost:3500
-  
+
   # Developer note: considering removing this option so it can ONLY be turned by using an ENV value.
-  # Default is false, ENV 'HOT_RELOADING' will always override 
-  hot_reloading_enabled_by_default: false 
-  
+  # Default is false, ENV 'HOT_RELOADING' will always override
+  hot_reloading_enabled_by_default: false
+
 test:
   <<: *default
   # generated files for tests, in /public/webpack/test   
@@ -125,21 +125,23 @@ production:
   <!-- In test mode -->
   <script src="/webpack/test/main.js"></script>
   <link rel="stylesheet" media="screen" href="/webpack/test/main-0bd141f6d9360cf4a7f5.js">
-  
+
   <!-- In development mode -->
   <script src="/webpack/development/main.js"></script>
   <link rel="stylesheet" media="screen" href="/webpack/development/main-0bd141f6d9360cf4a7f5.js">
-  
+
   <!-- In development mode with hot reloading, using the webpack-dev-server -->
   <script src="http://localhost:8080/webpack/development/main.js"></script>
   <!-- Note, there's no stylesheet tag by default, as your CSS should be inlined in your JS. -->
-  
+
   <!-- In production mode -->
   <script src="/webpack/production/main-0bd141f6d9360cf4a7f5.js"></script>
   <link rel="stylesheet" media="screen" href="/webpack/production/main-dc02976b5f94b507e3b6.css">
 ```
 
-## Other Helpers: Getting the asset path
+## Other Helpers
+
+### Getting the asset path
 
 The `asset_pack_path` helper provides the path of any given asset that's been compiled by webpack.
 Note, the real file path is the subdirectory of the public.
@@ -151,6 +153,20 @@ for an asset used in your pack code you can reference them like this in your vie
 <img src="<%= asset_pack_path 'calendar.png' %>" />
 <% # => <img src="/webpack/calendar.png" /> %>
 <% # real file path "public/webpack/calendar.png" /> %>
+```
+
+### Unmanifested Files
+Some special situations may call for including files output by webpack that are not included in the
+manifest. In this case, these assets **must** not be hashed, as without the manifest, Rails has no
+manifest file, there is no way to translate an unhashed filename to a hashed one. An example use case
+might be when using a separate webpack config to create a vendor DLL bundle using the Webpack DLL
+Plugin. Because this is only used in development, it is not necessary to hash, and because it is made
+in a different webpack config, it cannot share the same manifest file.
+
+```erb
+<%# app/views/layouts/application.html.erb %>
+<%= unmanifested_javascript_pack_tag('vendor-dll') %>
+<%= unmanifested_stylesheet_pack_tag('vendor-dll') %>
 ```
 
 ## Webpack Helper
@@ -166,7 +182,7 @@ To see available webpacker_lite rake tasks:
 rake webpacker_lite
 ```
 
-If you are using different directories for the output paths per RAILS_ENV, this is how you'd delete the files created for tests: 
+If you are using different directories for the output paths per RAILS_ENV, this is how you'd delete the files created for tests:
 ```
 RAILS_ENV=test rake webpacker_lite:clobber
 ```
