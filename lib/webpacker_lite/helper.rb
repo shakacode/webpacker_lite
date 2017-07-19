@@ -12,9 +12,20 @@ module WebpackerLite::Helper
   # In production mode:
   #   <%= asset_pack_path 'calendar.css' %> # => "/public/webpack/production/calendar-1016838bab065ae1e122.css"
   def asset_pack_path(name, **options)
+    pack_path = pack_path(name)
+    asset_path(pack_path, **options)
+  end
+
+  # Computes the full path for a given webpacker asset.
+  # Return relative path using manifest.json and passes it to asset_url helper
+  # Examples:
+  #
+  # In production mode:
+  #   <%= asset_pack_path 'calendar.css' %> # => "webpack/production/calendar-1016838bab065ae1e122.css"
+  def pack_path(name)
     path = WebpackerLite::Configuration.base_path
     file = WebpackerLite::Manifest.lookup(name)
-    asset_path("#{path}/#{file}", **options)
+    "#{path}/#{file}"
   end
 
   # Creates a script tag that references the named pack file, as compiled by Webpack.
