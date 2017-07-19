@@ -155,6 +155,8 @@ for an asset used in your pack code you can reference them like this in your vie
 <% # real file path "public/webpack/calendar.png" /> %>
 ```
 
+The `pack_path` is the same as the `asset_pack_path` except that the Rails `asset_path` is not called on the file name. This is used by server rendering, as the `asset_path` is designed for browsers to access assets.
+
 ## Webpack Helper
 You may use the [React on Rails NPM Package](https://www.npmjs.com/package/react-on-rails), [react-on-rails/webpackConfigLoader](https://github.com/shakacode/react_on_rails/blob/master/webpackConfigLoader.js) to provide your Webpack config with easy access to the YAML settings. Even if you don't use the NPM package, you can use that file to inspire your Webpack configuration.
 

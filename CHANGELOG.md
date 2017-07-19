@@ -5,6 +5,10 @@ Contributors: please follow the recommendations outlined at [keepachangelog.com]
 
 ## [Unreleased]
 *Please add entries here for your pull requests.*
+## [2.1.0] - 2017-07-18
+### Added
+* Expose helper pack_path for server rendering so asset_path is not called, so that a CDN is never used for server rendering in React on Rails. [#23](https://github.com/shakacode/webpacker_lite/pull/23) by [justin808](https://github.com/justin808).
+
 ## [2.0.4] - 2017-05-29
 ### Fixed
 * Code handles case of missing file and mtime. [#15](https://github.com/shakacode/webpacker_lite/pull/15) by [justin808](https://github.com/justin808).
