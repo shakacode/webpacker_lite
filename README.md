@@ -5,6 +5,13 @@
 
 We will soon merge Webpacker Lite changes back into [Webpacker, per this discussion](https://github.com/rails/webpacker/issues/464#issuecomment-310986140). Any changes will be minor if you're using Webpacker Lite. In the meantime, we have something _stable_ for React on Rails projects!
 
+[React on Rails v9.0.0.beta](https://github.com/shakacode/react_on_rails/blob/rails-webpacker/README.md) supports Webpacker rather than Webpacker Lite. See the migration instructions in the [branch CHANGELOG.md](https://github.com/shakacode/react_on_rails/blob/rails-webpacker/CHANGELOG.md).
+
+See the changes pending review. Any help with reviewing and trying these is greatly appreciated by Justin!
+
+* [rails/webpacker/pull/601](https://github.com/rails/webpacker/pull/601)
+* [shakacode/react_on_rails/pull/908](https://github.com/shakacode/react_on_rails/pull/908)
+
 ------
 
 Webpacker Lite provides similar webpack enabled view helpers from [Webpacker](https://github.com/rails/webpacker).
