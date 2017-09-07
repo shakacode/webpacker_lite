@@ -1,6 +1,13 @@
 # Webpacker Lite
 ![Gem Version](https://badge.fury.io/rb/webpacker_lite.svg) [![Build Status](https://travis-ci.org/shakacode/webpacker_lite.svg?branch=master)](https://travis-ci.org/shakacode/webpacker_lite)
 
+----------------
+# ATTENTION
+
+This project has been merged into https://github.com/rails/webpacker. Please update your React on Rails version to v9 to use the rails/webpacker project.
+
+----------------
+
 *A slimmer version of Webpacker*
 
 We will soon merge Webpacker Lite changes back into [Webpacker, per this discussion](https://github.com/rails/webpacker/issues/464#issuecomment-310986140). Any changes will be minor if you're using Webpacker Lite. In the meantime, we have something _stable_ for React on Rails projects!
